@@ -1,0 +1,64 @@
+<div ng-app="unicorn" ng-controller="AppCtrl" id="container" ng-cloak>
+
+  <!-- Global errors (notification center) -->
+  <div ng-cloak class="notification-center">
+    <li ng-repeat="error in errorBus">{{error.message}}</li>
+  </div>
+
+  <md-toolbar id="header">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button nav-toggle" aria-label="Menu" ng-click="intent.toggleSidenav('links')">
+        <md-icon class="icon" md-font-icon="icon-list" alt="Menu"></md-icon>
+      </md-button>
+      <span class="logo" flex>
+        <a href="/">
+          <img src="images/logo-icon.png" height="30px" height="auto">
+        </a>
+      </span>
+      <md-button class="md-icon-button nav-toggle" ng-click="intent.toggleSidenav('account')">
+        <md-icon class="icon" md-font-icon="icon-user" alt="Menu"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-sidenav md-component-id="links" layout="column" layout-padding id="sidenav-links" class="md-sidenav-left md-whiteframe-z1">
+    <md-button class="md-accent nav-link">About Unicorn</md-button>
+    <md-button class="md-accent nav-link">Login</md-button>
+    <md-button class="md-accent nav-link">Sign Up</md-button>
+    <md-divider></md-divider>
+    <div class="social" layout="row" layout-align="center">
+      <span flex>
+        <md-button class="md-fab md-mini">
+          <md-icon class="icon" md-font-icon="icon-facebook" alt="Facebook"></md-icon>
+        </md-button>
+      </span>
+      <span flex>
+        <md-button class="md-fab md-mini">
+          <md-icon class="icon" md-font-icon="icon-twitter" alt="Twitter"></md-icon>
+        </md-button>
+      </span>
+      <span flex>
+        <md-button class="md-fab md-mini">
+          <md-icon class="icon" md-font-icon="icon-google-plus" alt="Google Plus"></md-icon>
+        </md-button>
+      </span>
+      <span flex>
+        <md-button class="md-fab md-mini">
+          <md-icon class="icon" md-font-icon="icon-youtube" alt="YouTube"></md-icon>
+        </md-button>
+      </span>
+    </div>
+  </md-sidenav>
+
+  <md-sidenav md-component-id="account" layout-padding id="sidenav-accounts" class="md-sidenav-right md-whiteframe-z1">
+    Right Nav!
+  </md-sidenav>
+
+  <!-- Core dynamic content section -->
+  <div id="content" layout="column">
+
+    <div ui-view></div>
+
+  </div>
+
+</div>

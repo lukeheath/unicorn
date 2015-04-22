@@ -1,0 +1,27 @@
+<div id="login">
+
+	<h2>Log In</h2>
+		
+	<form novalidate ng-submit="login()" name="loginForm">
+		<div class="form-group">
+			<input ng-model="user.email" type="email" class="form-control" id="emailInput" placeholder="Email Address" required>
+		</div>
+		<div class="form-group">
+			<label for="passwordInput">Password</label>
+			<input ng-model="user.password" ng-minlength="6" type="password" class="form-control" id="passwordInput" placeholder="Password" required>
+			<p class="forgot text-right"><small><a ui-sref="requestPassword">Forgot your password?</a></small></p>
+		</div>
+		<div class="button-wrapper">
+			<button type="submit" class="btn btn-primary"
+			ng-class="{disabled: loginForm.$invalid}">
+			<span ng-hide="syncing">
+				Log In
+			</span>
+			<div class="button-spinner"
+	    ng-show="syncing"
+	    ng-include src="'/templates/loading/button-spinner.html'"></div>
+			</button>
+		</div>
+	</form>
+
+</div>

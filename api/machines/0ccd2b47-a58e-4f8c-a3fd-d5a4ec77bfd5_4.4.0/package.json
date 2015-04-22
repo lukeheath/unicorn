@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "machinepack-util": "4.4.0"
+  },
+  "machinepack": {
+    "machines": []
+  }
+}

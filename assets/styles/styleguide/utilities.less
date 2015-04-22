@@ -1,0 +1,45 @@
+/**
+ * Custom utility classes
+ *
+ */
+
+.no-margin{
+	margin: 0 !important;
+}
+
+.no-padding{
+	padding: 0 !important;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click],
+[ui-sref] {
+    cursor: pointer;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+// Equal column height
+.row.equal-height {
+	display: table;
+	[class*="col-"] {
+	    float: none;
+	    display: table-cell;
+	    vertical-align: top;
+	}
+}
+
+/**
+ * FOR DEV USE ONLY
+ */
+
+.show-grid [class^=col-] {
+	background-color: #eee;
+	background-color: rgba(86,61,124,.15);
+	border: 1px solid #ddd;
+	border: 1px solid rgba(86,61,124,.2);
+	text-align: center;
+}

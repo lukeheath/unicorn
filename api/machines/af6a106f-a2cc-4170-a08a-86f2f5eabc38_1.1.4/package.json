@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "machinepack-gravatar": "1.1.4"
+  },
+  "machinepack": {
+    "machines": []
+  }
+}

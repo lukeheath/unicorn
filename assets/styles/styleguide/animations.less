@@ -1,0 +1,39 @@
+/**
+ * ngAnimate Styles
+ *
+ */
+
+div#content{
+	position: relative;
+}
+
+[ui-view]{
+	position: relative;
+}
+
+[ui-view].ng-leave, [ui-view].ng-enter{
+	width: 100%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 102;
+}
+
+[ui-view].ng-leave {
+	.opacity(1);
+	.transition-duration(0.6s);
+}
+
+[ui-view].ng-enter {
+	.opacity(0);
+  .transition-duration(0.3s);
+}
+
+[ui-view].ng-enter-active{
+	.opacity(1);
+	.transition-delay(0.2s);
+}
+
+[ui-view].ng-leave-active{
+	.opacity(0);
+}
