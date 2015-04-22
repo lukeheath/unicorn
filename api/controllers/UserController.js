@@ -39,88 +39,45 @@ module.exports = {
 
                     },
                     "success": function(getImageURL) {
-                        // Create User
-                        sails.machines['_project_3202_0.0.0'].create_user({
-                            "username": inputs.username,
-                            "email": inputs.email,
-                            "password": inputs.password,
-                            "gravatar": getImageURL
-                        }).setEnvironment({
-                            sails: sails
+                        // Encrypt password
+                        sails.machines['e05a71f7-485d-443a-803e-029b84fe73a4_2.2.0'].encryptPassword({
+                            "password": inputs.password
                         }).exec({
-                            "success": function(createUser) {
-                                return exits.respond({
-                                    data: createUser,
-                                    action: "respond_with_result_and_status",
-                                    status: 200
-                                });
-
-                            },
-                            "error": function(createUser) {
+                            "error": function(encryptPassword) {
                                 return exits.error({
-                                    data: createUser,
+                                    data: encryptPassword,
                                     status: 500
                                 });
 
+                            },
+                            "success": function(encryptPassword) {
+                                // Create User
+                                sails.machines['_project_3202_0.0.0'].create_user({
+                                    "username": inputs.username,
+                                    "email": inputs.email,
+                                    "password": encryptPassword,
+                                    "gravatar": getImageURL
+                                }).setEnvironment({
+                                    sails: sails
+                                }).exec({
+                                    "success": function(createUser) {
+                                        return exits.respond({
+                                            data: createUser,
+                                            action: "respond_with_result_and_status",
+                                            status: 200
+                                        });
+
+                                    },
+                                    "error": function(createUser) {
+                                        return exits.error({
+                                            data: createUser,
+                                            status: 500
+                                        });
+
+                                    }
+                                });
+
                             }
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
-    put_$id: function(req, res) {
-        Machine.build({
-            inputs: {
-                "id": {
-                    "example": "abc123",
-                    "required": true
-                },
-                "username": {
-                    "example": "scott"
-                },
-                "email": {
-                    "example": "scott"
-                },
-                "password": {
-                    "example": "scott"
-                },
-                "gravatar": {
-                    "example": "scott"
-                }
-            },
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // Update User
-                sails.machines['_project_3202_0.0.0'].update_user({
-                    "username": inputs.username,
-                    "email": inputs.email,
-                    "password": inputs.password,
-                    "gravatar": inputs.gravatar,
-                    "criteria": {
-                        id: inputs.id
-                    }
-                }).setEnvironment({
-                    sails: sails
-                }).exec({
-                    "success": function(updateUser) {
-                        return exits.respond({
-                            data: updateUser,
-                            action: "respond_with_result_and_status",
-                            status: 200
-                        });
-
-                    },
-                    "error": function(updateUser) {
-                        return exits.error({
-                            data: updateUser,
-                            status: 500
                         });
 
                     }

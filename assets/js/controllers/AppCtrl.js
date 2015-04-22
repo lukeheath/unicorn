@@ -15,6 +15,10 @@ angular.module('unicorn')
         '$scope', '$rootScope', '$state', '$mdSidenav', 'uiMe', 'uiList', 'uiErrorBus',
 function($scope, $rootScope, $state, $mdSidenav, uiMe, uiList, uiErrorBus) {
 
+  console.log(uiMe);
+
+  window.uiMe = uiMe;
+
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // When the application is initially rendered
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//

@@ -22,16 +22,16 @@ angular.module('cloudsdk').endpoints({
 
 
   // Me (current user)
-  login: 'PUT /me/login',
-  logout: 'PUT /me/logout',
-  signup: 'POST /me/signup',
+  login: 'POST /login',
+  logout: 'POST /logout',
+  signup: 'POST /user',
   getMyProfile: 'GET /me',
-  updateMyProfile: 'PUT /me',
+  updateMyProfile: 'PUT /me'
 
   // Items
-  listItems: 'GET /item',
-  createItem: 'POST /item',
-  updateItem: 'PUT /item/:id',
-  destroyItem: 'DELETE /item/:id',
+  // listItems: 'GET /item',
+  // createItem: 'POST /item',
+  // updateItem: 'PUT /item/:id',
+  // destroyItem: 'DELETE /item/:id',
 
 });

@@ -19,6 +19,7 @@ function( Cloud  ) {
 
       return Cloud.getMyProfile()
       .then(function whenServerResponds(data) {
+        console.log(data);
         self.replace(data);
       });
 
