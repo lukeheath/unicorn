@@ -1,30 +1,36 @@
 /**
- * LoginCtrl
+ * SignupCtrl
  *
  * @type {angular.controller}
  * @module  unicorn
- * @description  The UI controller for user login
+ * @description  The UI controller for user signup
  *
  *               ## Primary responsibilities:
- *               Logging in users
+ *               Signing users up
  *
  */
 
 angular.module('unicorn')
-.controller('LoginCtrl', [
-        '$scope', '$rootScope', '$state', '$timeout', 'uiMe', 'uiList', 'uiErrorBus',
-function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
+.controller('SignupCtrl', [
+        '$scope', '$rootScope', '$state', '$location', 'uiMe', 'uiList', 'uiErrorBus',
+function($scope, $rootScope, $state, $location, uiMe , uiList, uiErrorBus) {
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // When the application is initially rendered
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  //
+  
+  // If this is an integration signup, 
+  // get the integration record
+  if($location.search().integrate){
+    uiMe.getIntegration()
+    .then(function onSuccess(){
+      $scope.user = {
+        email: uiMe.integration.email,
+        integrationId: uiMe.integration.id
+      };
+    });
+  }
 
-  $rootScope.appReady.then(function onReady(){
-    if(uiMe.id){
-      $state.go('profile');
-    }
-  });
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // DOM Events
@@ -32,24 +38,18 @@ function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
 
   $scope.intent = angular.extend($scope.intent||{}, {
 
-    login: function(){
+    signup: function(){
       uiMe.syncing.form = true;
-      uiMe.login($scope.user)
+      uiMe.signup($scope.user)
       .then(function onLogin(){
         $state.go('profile');
       })
       .catch(function onError(err){
-        if(err.status >= 400 && err.status < 500){
-          uiErrorBus.$handleError('Invalid username or password. Please try again.');
-        }
-        else if(err.status >= 500){
-          uiErrorBus.$handleError(err);
-        }
+        uiErrorBus.$handleError(err);
       })
       .finally(function eitherWay(){
         uiMe.syncing.form = false;
       });
-
     }
 
   });

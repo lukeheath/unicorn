@@ -16,12 +16,22 @@ angular.module('unicorn')
     .state('home', {
       url: '/',
       templateUrl: 'templates/brochure/home.html',
-      controller: 'AppCtrl'
+      controller: 'HomeCtrl'
     })
     .state('login', {
       url: '/login',
       templateUrl: 'templates/account/login.html',
       controller: 'LoginCtrl'
+    })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'templates/account/signup.html',
+      controller: 'SignupCtrl'
+    })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'templates/account/profile.html',
+      controller: 'ProfileCtrl'
     });
 
     /******************************

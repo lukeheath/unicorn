@@ -17,7 +17,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Find One User
-                sails.machines['_project_3202_0.0.0'].findOne_user({
+                sails.machines['_project_3202_0.0.3'].findOne_user({
                     "criteria": {
                         email: inputs.email
                     }
@@ -61,7 +61,12 @@ module.exports = {
                                     },
                                     "success": function(saveToSession) {
                                         return exits.respond({
-                                            data: findOneUser,
+                                            data: {
+                                                id: (findOneUser && findOneUser.id),
+                                                email: (findOneUser && findOneUser.email),
+                                                username: (findOneUser && findOneUser.username),
+                                                gravatar: (findOneUser && findOneUser.gravatar)
+                                            },
                                             action: "respond_with_value_and_status",
                                             status: 200
                                         });
@@ -83,7 +88,7 @@ module.exports = {
                     "notFound": function(findOneUser) {
                         return exits.respond({
                             action: "respond_with_status",
-                            status: "404"
+                            status: "403"
                         });
 
                     }

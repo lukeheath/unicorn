@@ -1,0 +1,21 @@
+/**
+ * Text link overrides
+ *
+ */
+
+#content{
+	a{
+		color: @primaryColor;
+		text-decoration: none;
+		.transition(color 0.2s);
+		&:hover{
+			color: @accentColor;
+		}
+	}
+	a.input-link{
+		position: absolute;
+		bottom: 5px;
+		right: 0;
+		font-size: 1rem;
+	}
+}

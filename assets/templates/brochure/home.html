@@ -1,5 +1,41 @@
-<div id="home" layout-padding layout-margin>
-	<h1 class="md-display-3">Unicorn</h1>
-	<img src="/images/unicorn.gif" style="margin: 15px auto;">
-	<p class="md-body-1"><strong>Hooray!</strong> You've found Unicorn, a Treeline / Angular seed.</p>
-</div>
+<h1 class="mid-display-2" hide show-gt-sm>Unicorn</h1>
+<md-content id="home" layout-padding layout="row" layout-sm="column">
+
+	<div flex class="welcome">
+		<img src="/images/unicorn.gif">
+		<p class="md-body-1"><strong>{{ uiMe.username || 'Hooray' }}!</strong> You've found Unicorn, a Treeline / Angular seed.</p>
+	</div>
+
+	<md-content flex class="why">
+	
+			<h1 class="mid-display-2" hide-gt-sm>Unicorn</h1>
+
+			<p class="md-body-1">Because who wants to keep rebuilding the same architecture for every project? Unicorn is an evolving seed that currently contains the following features:</p>
+
+			<md-list>
+			  <md-list-item class="md-2-line">
+			    <md-checkbox aria-label="Material Design" ng-model="item.design" ng-init="item.design = true"></md-checkbox>
+			    <div class="md-list-item-text">
+			      <h3>Angular Material Design</h3>
+			      <p>Angular's beautiful new <a target="_blank" href="https://material.angularjs.org/">Material Design</a> framework integrated.</p>
+			    </div>
+			  </md-list-item>
+			  <md-list-item class="md-2-line">
+			    <md-checkbox aria-label="Treeline" ng-model="item.treeline" ng-init="item.treeline = true"></md-checkbox>
+			    <div class="md-list-item-text">
+			      <h3>Primed for Treeline</h3>
+			      <p>Built for the new Node/Sails platform <a target="_blank" href="https://treeline.io/">Treeline</a>.</p>
+			    </div>
+			  </md-list-item>
+			  <md-list-item class="md-2-line">
+			    <md-checkbox aria-label="User management" ng-model="item.user" ng-init="item.user = true"></md-checkbox>
+			    <div class="md-list-item-text">
+			      <h3>User Signup / Login / Logout</h3>
+			      <p>User management via email or Facebook authorization.</p>
+			    </div>
+			  </md-list-item>
+			</md-list>
+
+	</md-content>
+
+</md-content>

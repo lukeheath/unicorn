@@ -1,0 +1,30 @@
+/**
+ * Notification Center
+ */
+
+#notifications{
+	position: absolute;
+	width: 80%;
+	max-width: 768px;
+	top: -25px;
+	left: 0;
+	right: 0;
+	z-index: 10000;
+	margin: 0 auto;
+	background: fade(@warnColor, 90%);
+	.transition(all 0.2s);
+	.opacity(0);
+	&.active{
+		top: 75px;
+		.opacity(1);
+	}
+	.notification{
+		width: 100%;
+		.transition(opacity 0.2s);
+	}
+	p{
+		color: @white;
+		font-weight: bold;
+		text-align: center;
+	}
+}

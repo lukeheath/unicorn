@@ -1,5 +1,21 @@
 module.exports = {
   "inputs": {
+    "email": {
+      "example": "scott",
+      "friendlyName": "email"
+    },
+    "password": {
+      "example": "scott",
+      "friendlyName": "password"
+    },
+    "gravatar": {
+      "example": "scott",
+      "friendlyName": "gravatar"
+    },
+    "username": {
+      "example": "scott",
+      "friendlyName": "username"
+    },
     "criteria": {
       "friendlyName": "criteria",
       "typeclass": "dictionary",
@@ -10,13 +26,13 @@ module.exports = {
     "success": {
       "friendlyName": "then",
       "example": [{
-        "username": "scott",
         "email": "scott",
         "password": "scott",
         "gravatar": "scott",
+        "username": "scott",
         "id": 123,
-        "createdAt": "2015-04-22T03:32:07.425Z",
-        "updatedAt": "2015-04-22T03:32:07.425Z"
+        "createdAt": "2015-04-28T15:38:53.873Z",
+        "updatedAt": "2015-04-28T15:38:53.873Z"
       }]
     },
     "error": {
@@ -25,12 +41,12 @@ module.exports = {
   },
   "defaultExit": "success",
   "fn": function(inputs, exits, env) {
-    env.sails.models.user.find(inputs.criteria, env.sails.util.omit(env.sails.util.objCompact(inputs), 'criteria')).exec(function(err, records) {
+    env.sails.models.user.update(inputs.criteria, env.sails.util.omit(env.sails.util.objCompact(inputs), 'criteria')).exec(function(err, records) {
       if (err) {
         return exits.error(err);
       }
       return exits.success(records);
     });
   },
-  "identity": "find_user"
+  "identity": "update_user"
 };

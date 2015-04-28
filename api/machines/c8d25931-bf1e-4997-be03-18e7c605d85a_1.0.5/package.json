@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "machinepack-facebook": "1.0.5"
+  },
+  "machinepack": {
+    "machines": []
+  }
+}

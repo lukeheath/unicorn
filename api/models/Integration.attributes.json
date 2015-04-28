@@ -1,0 +1,1 @@
+{"attributes":{"firstName":{"type":"string","defaultsTo":null},"lastName":{"type":"string","defaultsTo":null},"email":{"type":"string","defaultsTo":null},"type":{"type":"string","defaultsTo":null},"userId":{"type":"float","defaultsTo":null},"gender":{"type":"string","defaultsTo":null}},"globalId":"Integration","identity":"integration"}

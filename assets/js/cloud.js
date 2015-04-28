@@ -26,7 +26,10 @@ angular.module('cloudsdk').endpoints({
   logout: 'POST /logout',
   signup: 'POST /user',
   getMyProfile: 'GET /me',
-  updateMyProfile: 'PUT /me'
+  updateMyProfile: 'PUT /me',
+  facebookAuth: 'GET /user/facebook',
+  integrateFacebook: 'POST /integration/facebook',
+  getIntegration: 'GET /integration/user'
 
   // Items
   // listItems: 'GET /item',

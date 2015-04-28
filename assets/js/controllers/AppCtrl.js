@@ -12,41 +12,60 @@
 
 angular.module('unicorn')
 .controller('AppCtrl', [
-        '$scope', '$rootScope', '$state', '$mdSidenav', 'uiMe', 'uiList', 'uiErrorBus',
-function($scope, $rootScope, $state, $mdSidenav, uiMe, uiList, uiErrorBus) {
-
-  console.log(uiMe);
+        '$scope', '$rootScope', '$state', '$q', '$mdSidenav', 'uiMe', 'uiList', 'uiErrorBus',
+function($scope, $rootScope, $state, $q, $mdSidenav, uiMe, uiList, uiErrorBus) {
 
   window.uiMe = uiMe;
+  $scope.uiMe = uiMe;
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // When the application is initially rendered
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
+  // Create promise for app ready state
+  var appReady = $q.defer();
+  $rootScope.appReady = appReady.promise;
+
+  $rootScope.appReady.then(function onReady(){
+    
+  })
+  .catch(function onError(err){
+    
+  })
+  .finally(function eitherWay(){
+    uiMe.syncing.app = false;
+  });
+
   // Fetch current user data from server
-  // uiMe.fetch()
-  // .then(function (){
+  uiMe.fetch()
+  .then(function haveUser(){
 
-  //   // Fetch widgets from server
-  //   uiList.fetch({
-  //     belongingTo: uiMe.id
-  //   });
+    appReady.resolve();
 
-  // }).catch(function (err){
-  //   // e.g. if err.status is 401/403, redirect to login.
-  //   if (err.status < 404 && err.status > 400) {
-  //     window.location = foo;
-  //     return;
-  //   }
+    // Fetch widgets from server
+    // uiList.fetch({
+    //   belongingTo: uiMe.id
+    // });
 
-  //   // If the error is unknkown, use a catch-all like `uiErrorBus`.
-  //   // (for simplicity, just using `console.error()` here)
-  //   console.error(err);
-  // });
+  }).catch(function noUser(err){
+
+    appReady.reject(err);
+
+    // e.g. if err.status is 401/403, redirect to login.
+    // if (err.status < 404 && err.status > 400) {
+    //   window.location = foo;
+    //   return;
+    // }
+
+  });
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // DOM Events
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+    $scope.intent.closeSidenav();
+  });
 
   $scope.intent = angular.extend($scope.intent||{}, {
 
@@ -59,6 +78,22 @@ function($scope, $rootScope, $state, $mdSidenav, uiMe, uiList, uiErrorBus) {
         $mdSidenav('account').toggle();
         $mdSidenav('links').close();
       }
+    },
+
+    closeSidenav: function(){
+      $mdSidenav('links').close();
+      $mdSidenav('account').close();
+    },
+
+    logout: function(){
+      $scope.intent.closeSidenav();
+      uiMe.logout()
+      .then(function onSuccess(){
+        $state.go('login');
+      })
+      .catch(function onError(err){
+        uiErrorBus.$handleError(err);
+      });
     }
 
   });

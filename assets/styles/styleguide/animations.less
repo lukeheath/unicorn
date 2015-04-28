@@ -7,6 +7,10 @@ div#content{
 	position: relative;
 }
 
+/******
+** Fade ui-router views
+******/
+
 [ui-view]{
 	position: relative;
 }
@@ -14,26 +18,48 @@ div#content{
 [ui-view].ng-leave, [ui-view].ng-enter{
 	width: 100%;
 	position: absolute;
+	top: 0;
 	left: 0;
 	right: 0;
 	z-index: 102;
+	.transition-duration(0.2s);
 }
 
 [ui-view].ng-leave {
 	.opacity(1);
-	.transition-duration(0.6s);
 }
 
 [ui-view].ng-enter {
 	.opacity(0);
-  .transition-duration(0.3s);
 }
 
 [ui-view].ng-enter-active{
 	.opacity(1);
-	.transition-delay(0.2s);
 }
 
 [ui-view].ng-leave-active{
 	.opacity(0);
 }
+
+
+/******
+** Fade ng-show & ng-hide
+******/
+
+// [ng-show], [ng-hide]{
+// 	.transition(opacity 0.2s);
+// }
+
+// .ng-hide-add, .ng-hide-remove {
+//   /* ensure visibility during the transition */
+//   display: block !important; /* yes, important */
+// }
+// .ng-hide-add, .ng-hide {
+//     .opacity(0);
+// }
+// .ng-hide-active{
+// 	.opacity(1);
+// }
+// .ng-hide-remove-active {
+//     .opacity(0);
+// }

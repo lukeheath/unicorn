@@ -1,10 +1,5 @@
 module.exports = {
   "inputs": {
-    "username": {
-      "example": "scott",
-      "friendlyName": "username",
-      "required": true
-    },
     "email": {
       "example": "scott",
       "friendlyName": "email",
@@ -19,19 +14,24 @@ module.exports = {
       "example": "scott",
       "friendlyName": "gravatar",
       "required": true
+    },
+    "username": {
+      "example": "scott",
+      "friendlyName": "username",
+      "required": true
     }
   },
   "exits": {
     "success": {
       "friendlyName": "then",
       "example": {
-        "username": "scott",
         "email": "scott",
         "password": "scott",
         "gravatar": "scott",
+        "username": "scott",
         "id": 123,
-        "createdAt": "2015-04-22T03:32:07.425Z",
-        "updatedAt": "2015-04-22T03:32:07.425Z"
+        "createdAt": "2015-04-28T15:38:53.873Z",
+        "updatedAt": "2015-04-28T15:38:53.873Z"
       }
     },
     "error": {

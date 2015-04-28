@@ -1,0 +1,18 @@
+<md-content layout-padding layout-margin id="profile" class="simple-form" ng-cloak>
+
+	<h1 class='md-display-2'>Profile</h1>
+
+	<md-content layout-padding layout="column" layout-gtr-sm="row">
+		<div>
+			<img ng-src="{{ uiMe.gravatar }}" width="200">
+		</div>
+		<div>
+			<h3 class="md-display-1">{{ uiMe.username }}</h3>
+		</div>
+	</md-content>
+
+	<md-button class="md-accent md-hue-1" ng-click="">
+		Update Profile
+	</md-button>
+
+</md-content>

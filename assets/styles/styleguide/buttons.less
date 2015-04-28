@@ -1,0 +1,45 @@
+/**
+ * Define button style overrides
+ *
+ */
+
+#content{
+
+	.md-button.md-default-theme[disabled]{
+		background: fade(@black, 7%);
+	}
+
+	button.large{
+		width: 100%;
+		max-width: 480px;
+		height: 40px;
+		padding: 0 20px;
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.button-wrap{
+		position: relative;
+		.spinner{
+			position: absolute;
+			top: -5px;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			.md-left .md-half-circle{
+				border-left-color: lighten(@primaryColor, 30%);
+				border-top-color: lighten(@primaryColor, 30%);
+			}
+			.md-right .md-half-circle{
+				border-right-color: lighten(@primaryColor, 30%);
+				border-top-color: lighten(@primaryColor, 30%);
+			}
+			.md-gap{
+				border-top-color: lighten(@primaryColor, 30%);
+				border-bottom-color: lighten(@primaryColor, 30%);
+			}
+			.scale(0.5);
+		}
+	}
+
+}

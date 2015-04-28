@@ -1,8 +1,10 @@
 <div ng-app="unicorn" ng-controller="AppCtrl" id="container" ng-cloak>
 
   <!-- Global errors (notification center) -->
-  <div ng-cloak class="notification-center">
-    <li ng-repeat="error in errorBus">{{error.message}}</li>
+  <div layout="column" id="notifications" class="md-whiteframe-z2" ng-cloak ng-class="{active: errorBus.length > 0}">
+    <div ng-repeat="error in errorBus" class="notification" flex layout-padding layout-margin>
+      <p class="md-body-1">{{error.message}}</p>
+    </div>
   </div>
 
   <md-toolbar id="header">
@@ -11,7 +13,7 @@
         <md-icon class="icon" md-font-icon="icon-list" alt="Menu"></md-icon>
       </md-button>
       <span class="logo" flex>
-        <a href="/">
+        <a ui-sref="home">
           <img src="images/logo-icon.png" height="30px" height="auto">
         </a>
       </span>
@@ -22,10 +24,13 @@
   </md-toolbar>
 
   <md-sidenav md-component-id="links" layout="column" layout-padding id="sidenav-links" class="md-sidenav-left md-whiteframe-z1">
-    <md-button class="md-accent nav-link">About Unicorn</md-button>
-    <md-button class="md-accent nav-link">Login</md-button>
-    <md-button class="md-accent nav-link">Sign Up</md-button>
+    <md-button class="md-accent nav-link" ui-sref="home">About Unicorn</md-button>
+    <md-button class="md-accent nav-link" ng-click="intent.logout()" ng-if="uiMe.id">Logout</md-button>
+    <md-button class="md-accent nav-link" ui-sref="login" ng-if="!uiMe.id">Login</md-button>
+    <md-button class="md-accent nav-link" ui-sref="signup" ng-if="!uiMe.id">Sign Up</md-button>
+
     <md-divider></md-divider>
+
     <div class="social" layout="row" layout-align="center">
       <span flex>
         <md-button class="md-fab md-mini">
@@ -50,14 +55,30 @@
     </div>
   </md-sidenav>
 
-  <md-sidenav md-component-id="account" layout-padding id="sidenav-accounts" class="md-sidenav-right md-whiteframe-z1">
-    Right Nav!
+  <md-sidenav md-component-id="account" layout-padding id="sidenav-account" class="md-sidenav-right md-whiteframe-z1">
+    <span ng-if="uiMe.id">
+      <md-content layout-padding layout="column" layout-gtr-sm="row">
+        <div>
+          <img ng-src="{{ uiMe.gravatar }}" width="200">
+        </div>
+        <div>
+          <h3 class="md-display-1">{{ uiMe.username }}</h3>
+        </div>
+      </md-content>
+    </span>
+    <span ng-if="!uiMe.id" layout="column">
+      <md-button class="md-raised md-accent" ui-sref="signup">Sign Up</md-button>
+      <h3 class="md-display-1 text-center">- OR -</h3>
+      <md-button class="md-raised md-accent" ui-sref="login">Log In</md-button>
+    </span>
   </md-sidenav>
 
   <!-- Core dynamic content section -->
   <div id="content" layout="column">
 
-    <div ui-view></div>
+    <div ui-view ng-hide="uiMe.syncing.app"></div>
+    
+    <md-progress-circular ng-show="uiMe.syncing.app" md-mode="indeterminate" class="md-accent syncing-app"></md-progress-circular>
 
   </div>
 
