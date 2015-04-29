@@ -2,17 +2,58 @@
 
 	<h1 class='md-display-2'>Profile</h1>
 
-	<md-content layout-padding layout="column" layout-gtr-sm="row">
+	<md-content layout-padding layout="column" layout-gtr-sm="row" ng-show="!editProfile">
 		<div>
 			<img ng-src="{{ uiMe.gravatar }}" width="200">
 		</div>
 		<div>
 			<h3 class="md-display-1">{{ uiMe.username }}</h3>
+			<p class="md-body-2">{{ uiMe.email }}</p>
 		</div>
 	</md-content>
 
-	<md-button class="md-accent md-hue-1" ng-click="">
-		Update Profile
+	<md-content layout-padding layout="column" layout-gtr-sm="row" ng-show="editProfile">
+		<div>
+			<img ng-src="{{ uiMe.gravatar }}" width="200">
+		</div>
+		<div>
+			<form name="profileForm" class="profile-form" ng-submit="intent.updateProfile();">
+				<md-input-container md-no-float>
+					<md-icon class="icon" md-font-icon="icon-person" alt="User"></md-icon>
+					<input ng-model="user.username" type="text" placeholder="Username" ng-required="true">
+				</md-input-container>
+				<md-input-container md-no-float>
+					<md-icon class="icon" md-font-icon="icon-person" alt="User"></md-icon>
+					<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+				</md-input-container>
+				<md-input-container md-no-float>
+					<md-icon class="icon" md-font-icon="icon-lock" alt="User"></md-icon>
+					<input ng-model="user.currentPassword" type="password" placeholder="Current Password" ng-required="true">
+				</md-input-container>
+				<md-input-container md-no-float>
+					<md-icon class="icon" md-font-icon="icon-lock" alt="User"></md-icon>
+					<input ng-model="user.newPassword" type="password" placeholder="New Password">
+				</md-input-container>
+
+				<div class="button-wrap">
+					<md-button type="submit" class="md-theme-default md-raised md-primary large" ng-disabled="profileForm.$invalid">
+						<span ng-hide="uiMe.syncing.form">Update</span>
+						<span ng-show="uiMe.syncing.form" class="spinner">
+							<md-progress-circular class="md-white syncing-button active" md-mode="indeterminate" ></md-progress-circular>
+						</span>
+					</md-button>
+				</div>
+
+			</form>
+		</div>
+	</md-content>
+
+	<md-button class="md-accent md-hue-1" ng-click="intent.editProfile()" ng-show="!editProfile">
+		Edit Profile
+	</md-button>
+
+	<md-button class="md-accent md-hue-1" ng-click="editProfile = false" ng-show="editProfile">
+		Cancel
 	</md-button>
 
 </md-content>

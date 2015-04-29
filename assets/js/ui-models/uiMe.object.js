@@ -5,7 +5,8 @@ angular.module('unicorn').uiObject('uiMe', [
  */
 
          'Cloud',
-function( Cloud  ) {
+         'uiErrorBus',
+function( Cloud, uiErrorBus ) {
 
   return {
 
@@ -98,6 +99,21 @@ function( Cloud  ) {
       .catch(function onError(err){
         console.log("Error? ", err);
       })
+    },
+
+    updateProfile: function(user){
+      var self = this;
+
+      console.log("Trying to update user with: ", user);
+
+      return Cloud.updateMyProfile(user)
+      .then(function onSucccess(data){
+        console.log("Successfully updated with: ", data);
+        self.fetch();
+      })
+      .catch(function onError(err){
+        uiErrorBus.$handleError(err.data);
+      });
     }
 
   };

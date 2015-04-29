@@ -1,16 +1,16 @@
 module.exports.routes = {
-  "post /integration/facebook": "IntegrationController.facebook",
+  "put /me": "MeController.put_update",
+  "get /integration/user": "IntegrationController.user",
   "get /integration": "IntegrationController.find",
   "get /me": "MeController.get_find",
-  "post /logout": "LogoutController.create",
-  "get /integration/user": "IntegrationController.user",
   "post /user": "UserController.post_create",
+  "post /integration/facebook": "IntegrationController.facebook",
+  "post /login": "LoginController.create",
   "get /user": "UserController.get_find",
   "get /test": "TestController.find",
   "get /user/facebook": "UserController.facebook",
-  "put /me": "MeController.put_update",
+  "post /logout": "LogoutController.create",
   "get /": "Home$Controller.find",
-  "post /login": "LoginController.create",
   "delete /user/:id": "UserController.delete_$id",
   "get /user/:id": "UserController.get_$id"
 };

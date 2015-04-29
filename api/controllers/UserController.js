@@ -14,10 +14,6 @@ module.exports = {
                 "username": {
                     "example": "scott",
                     "required": true
-                },
-                "integrationId": {
-                    "example": "abc123",
-                    "required": true
                 }
             },
             exits: {
@@ -152,7 +148,7 @@ module.exports = {
                                                         sails.machines['_project_3202_0.0.3'].update_integration({
                                                             "userId": (createUser && createUser.id),
                                                             "criteria": {
-                                                                id: inputs.integrationId
+                                                                id: loadSessionData
                                                             }
                                                         }).setEnvironment({
                                                             sails: sails

@@ -10,7 +10,7 @@
   <md-toolbar id="header">
     <div class="md-toolbar-tools">
       <md-button class="md-icon-button nav-toggle" aria-label="Menu" ng-click="intent.toggleSidenav('links')">
-        <md-icon class="icon" md-font-icon="icon-list" alt="Menu"></md-icon>
+        <md-icon class="icon" md-font-icon="icon-menu" alt="Menu"></md-icon>
       </md-button>
       <span class="logo" flex>
         <a ui-sref="home">
@@ -18,13 +18,14 @@
         </a>
       </span>
       <md-button class="md-icon-button nav-toggle" ng-click="intent.toggleSidenav('account')">
-        <md-icon class="icon" md-font-icon="icon-user" alt="Menu"></md-icon>
+        <md-icon class="icon" md-font-icon="icon-person" alt="Menu"></md-icon>
       </md-button>
     </div>
   </md-toolbar>
 
   <md-sidenav md-component-id="links" layout="column" layout-padding id="sidenav-links" class="md-sidenav-left md-whiteframe-z1">
     <md-button class="md-accent nav-link" ui-sref="home">About Unicorn</md-button>
+    <md-button class="md-accent nav-link" ui-sref="profile" ng-if="uiMe.id">Profile</md-button>
     <md-button class="md-accent nav-link" ng-click="intent.logout()" ng-if="uiMe.id">Logout</md-button>
     <md-button class="md-accent nav-link" ui-sref="login" ng-if="!uiMe.id">Login</md-button>
     <md-button class="md-accent nav-link" ui-sref="signup" ng-if="!uiMe.id">Sign Up</md-button>
