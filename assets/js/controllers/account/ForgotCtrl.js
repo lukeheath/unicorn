@@ -1,17 +1,17 @@
 /**
- * LoginCtrl
+ * ForgotCtrl
  *
  * @type {angular.controller}
  * @module  unicorn
- * @description  The UI controller for user login
+ * @description  The UI controller for forgot password
  *
  *               ## Primary responsibilities:
- *               Logging in users
+ *               Reminding users of their passwords
  *
  */
 
 angular.module('unicorn')
-.controller('LoginCtrl', [
+.controller('ForgotCtrl', [
         '$scope', '$rootScope', '$state', '$timeout', 'uiMe', 'uiList', 'uiErrorBus',
 function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
 
@@ -34,22 +34,23 @@ function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
 
   $scope.intent = angular.extend($scope.intent||{}, {
 
-    login: function(){
+    recoverPassword: function(){
       uiMe.syncing.form = true;
-      uiMe.login($scope.user)
-      .then(function onLogin(){
-        $state.go('profile');
-      })
-      .catch(function onError(err){
-        if(err.status >= 400 && err.status < 500){
-          uiErrorBus.$handleError('Invalid username or password. Please try again.');
-        }
-        else if(err.status >= 500){
-          uiErrorBus.$handleError(err);
-        }
+      uiMe.forgot($scope.user.email)
+      .then(function onSent(){
+
       })
       .finally(function eitherWay(){
         uiMe.syncing.form = false;
+        $scope.status = "If " + $scope.user.email + " is a valid user, a password recovery email has been sent.";
+        $scope.user.email = "";
+
+        $scope.reminderDone = true;
+
+        $timeout(function(){
+          $scope.reminderDone = false;
+        }, 5000);
+
       });
 
     }

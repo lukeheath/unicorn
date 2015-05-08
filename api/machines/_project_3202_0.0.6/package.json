@@ -1,0 +1,20 @@
+{
+  "dependencies": {},
+  "machinepack": {
+    "machines": ["create_integration", "create_user", "destroy_integration", "destroy_user", "findOne_integration", "findOne_user", "blueprintFind_user", "find_integration", "find_user", "ModifyModel", "update_integration", "update_user"],
+    "machineVersions": {
+      "create_integration": "0.0.8",
+      "create_user": "0.0.9",
+      "destroy_integration": "0.0.8",
+      "destroy_user": "0.0.9",
+      "findOne_integration": "0.0.8",
+      "findOne_user": "0.0.9",
+      "blueprintFind_user": "0.0.4",
+      "find_integration": "0.0.8",
+      "find_user": "0.0.9",
+      "ModifyModel": "0.0.11",
+      "update_integration": "0.0.8",
+      "update_user": "0.0.9"
+    }
+  }
+}

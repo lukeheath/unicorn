@@ -23,6 +23,16 @@ angular.module('unicorn')
       templateUrl: 'templates/account/login.html',
       controller: 'LoginCtrl'
     })
+    .state('forgot', {
+      url: '/forgot',
+      templateUrl: 'templates/account/forgot.html',
+      controller: 'ForgotCtrl'
+    })
+    .state('reset', {
+      url: '/reset/:authToken',
+      templateUrl: 'templates/account/reset.html',
+      controller: 'ResetCtrl'
+    })
     .state('signup', {
       url: '/signup',
       templateUrl: 'templates/account/signup.html',

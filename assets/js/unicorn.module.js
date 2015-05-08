@@ -7,7 +7,8 @@ var dependencies = [
 	'ngTouch',
 	'ngAnimate',
 	'ngMaterial',
-  'cloudsdk'
+  'cloudsdk',
+  'lodash'
 ];
 
 /**

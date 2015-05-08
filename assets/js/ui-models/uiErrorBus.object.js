@@ -75,7 +75,7 @@ function( $rootScope, $timeout  ) {
       e._uiErrorBusTimer = $timeout(function (){
         _errors.splice(_errors.indexOf(e),1);
         $rootScope.errorBus.splice($rootScope.errorBus.indexOf(metaErr),1);
-      }, (typeof e === 'object' && e.timeout) || 7500);
+      }, (typeof e === 'object' && e.timeout) || 5000);
     }
 
     _errors.push(e);

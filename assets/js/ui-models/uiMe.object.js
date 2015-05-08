@@ -39,6 +39,19 @@ function( Cloud, uiErrorBus ) {
       });
     },
 
+    forgot: function(email){
+      var self = this;
+
+      console.log('email: ' + email);
+
+      return Cloud.forgot({email: email})
+      .then(function whenServerRespond(data){
+        // Now that we have a user session
+        // fetch the current user's data
+        self.fetch();
+      });
+    },
+
     logout: function(user){
       var self = this;
 
@@ -53,10 +66,20 @@ function( Cloud, uiErrorBus ) {
 
       return Cloud.signup(user)
       .then(function whenServerRespond(data){
-        // Now that we have a user session
-        // fetch the current user's data
         self.fetch();
       });
+    },
+
+    resetPassword: function(newPassword, authToken){
+      var self = this;
+
+      return Cloud.resetPassword({password: newPassword, token: authToken})
+      .then(function whenServerResponds(data){
+        
+      })
+      .catch(function onError(err){
+        uiErrorBus.$handleError(err.data);
+      })
     },
 
     facebookAuth: function(){
@@ -66,8 +89,7 @@ function( Cloud, uiErrorBus ) {
       .then(function whenServerResponds(data){
         //console.log(data);
         window.location = data;
-      })
-
+      });
     },
 
     integrateFacebook: function(token){
@@ -104,16 +126,26 @@ function( Cloud, uiErrorBus ) {
     updateProfile: function(user){
       var self = this;
 
-      console.log("Trying to update user with: ", user);
-
       return Cloud.updateMyProfile(user)
       .then(function onSucccess(data){
-        console.log("Successfully updated with: ", data);
         self.fetch();
       })
       .catch(function onError(err){
         uiErrorBus.$handleError(err.data);
       });
+    },
+
+    authenticate: function(token){
+      var self = this;
+
+      return Cloud.authenticate({token: token})
+      .then(function onSuccess(){
+        self.fetch();
+      })
+      .catch(function onError(err){
+        console.log("Auth error: " + err);
+        uiErrorBus.$handleError(err.data);
+      })
     }
 
   };

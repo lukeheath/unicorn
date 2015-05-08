@@ -10,13 +10,14 @@ module.exports = {
     "success": {
       "friendlyName": "then",
       "example": {
-        "email": "scott",
-        "password": "scott",
-        "gravatar": "scott",
-        "username": "scott",
+        "password": "abc123",
+        "email": "bilbo@baggins.com",
+        "gravatar": "http://gravatar.com/bilbo",
+        "username": "bilbobaggins",
+        "authToken": "abc123abc123abc123",
         "id": 123,
-        "createdAt": "2015-04-28T15:38:53.873Z",
-        "updatedAt": "2015-04-28T15:38:53.873Z"
+        "createdAt": "2015-05-07T17:20:45.723Z",
+        "updatedAt": "2015-05-07T17:20:45.723Z"
       }
     },
     "error": {

@@ -1,20 +1,24 @@
 module.exports = {
   "inputs": {
-    "email": {
-      "example": "scott",
-      "friendlyName": "email"
-    },
     "password": {
-      "example": "scott",
+      "example": "abc123",
       "friendlyName": "password"
     },
+    "email": {
+      "example": "bilbo@baggins.com",
+      "friendlyName": "email"
+    },
     "gravatar": {
-      "example": "scott",
+      "example": "http://gravatar.com/bilbo",
       "friendlyName": "gravatar"
     },
     "username": {
-      "example": "scott",
+      "example": "bilbobaggins",
       "friendlyName": "username"
+    },
+    "authToken": {
+      "example": "abc123abc123abc123",
+      "friendlyName": "authToken"
     },
     "criteria": {
       "friendlyName": "criteria",
@@ -26,13 +30,14 @@ module.exports = {
     "success": {
       "friendlyName": "then",
       "example": [{
-        "email": "scott",
-        "password": "scott",
-        "gravatar": "scott",
-        "username": "scott",
+        "password": "abc123",
+        "email": "bilbo@baggins.com",
+        "gravatar": "http://gravatar.com/bilbo",
+        "username": "bilbobaggins",
+        "authToken": "abc123abc123abc123",
         "id": 123,
-        "createdAt": "2015-04-28T15:38:53.873Z",
-        "updatedAt": "2015-04-28T15:38:53.873Z"
+        "createdAt": "2015-05-07T17:20:45.723Z",
+        "updatedAt": "2015-05-07T17:20:45.723Z"
       }]
     },
     "error": {

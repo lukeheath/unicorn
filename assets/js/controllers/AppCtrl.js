@@ -38,25 +38,20 @@ function($scope, $rootScope, $state, $q, $mdSidenav, uiMe, uiList, uiErrorBus) {
 
   // Fetch current user data from server
   uiMe.fetch()
-  .then(function haveUser(){
-
-    appReady.resolve();
+  .then(function loggedIn(){
 
     // Fetch widgets from server
     // uiList.fetch({
     //   belongingTo: uiMe.id
     // });
 
-  }).catch(function noUser(err){
+  }).catch(function notLoggedIn(err){
 
-    appReady.reject(err);
+    //appReady.reject(err);
 
-    // e.g. if err.status is 401/403, redirect to login.
-    // if (err.status < 404 && err.status > 400) {
-    //   window.location = foo;
-    //   return;
-    // }
-
+  })
+  .finally(function eitherWay(){
+    appReady.resolve();
   });
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//

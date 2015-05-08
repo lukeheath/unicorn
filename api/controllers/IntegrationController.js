@@ -1,5 +1,73 @@
 var Machine = require("machine");
 module.exports = {
+    user: function(req, res) {
+        Machine.build({
+            inputs: {},
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // Load session data
+                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].load({
+                    "key": "integrationId"
+                }).setEnvironment({
+                    req: req
+                }).exec({
+                    "error": function(loadSessionData) {
+                        return exits.error({
+                            data: loadSessionData,
+                            status: 500
+                        });
+
+                    },
+                    "notFound": function(loadSessionData) {
+                        return exits.error({
+                            data: loadSessionData,
+                            status: 500
+                        });
+
+                    },
+                    "success": function(loadSessionData) {
+                        // Find One Integration
+                        sails.machines['_project_3202_0.0.6'].findOne_integration({
+                            "criteria": {
+                                id: loadSessionData
+                            }
+                        }).setEnvironment({
+                            sails: sails
+                        }).exec({
+                            "success": function(findOneIntegration) {
+                                return exits.respond({
+                                    data: findOneIntegration,
+                                    action: "respond_with_result_and_status",
+                                    status: 200
+                                });
+
+                            },
+                            "error": function(findOneIntegration) {
+                                return exits.error({
+                                    data: findOneIntegration,
+                                    status: 500
+                                });
+
+                            },
+                            "notFound": function(findOneIntegration) {
+                                return exits.error({
+                                    data: findOneIntegration,
+                                    status: 500
+                                });
+
+                            }
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
     facebook: function(req, res) {
         Machine.build({
             inputs: {
@@ -40,7 +108,7 @@ module.exports = {
                             },
                             "success": function(getUserByAccessToken) {
                                 // Find One User
-                                sails.machines['_project_3202_0.0.3'].findOne_user({
+                                sails.machines['_project_3202_0.0.6'].findOne_user({
                                     "criteria": {
                                         email: (getUserByAccessToken && getUserByAccessToken.email)
                                     }
@@ -82,7 +150,7 @@ module.exports = {
                                     },
                                     "notFound": function(findOneUser) {
                                         // Create Integration
-                                        sails.machines['_project_3202_0.0.3'].create_integration({
+                                        sails.machines['_project_3202_0.0.6'].create_integration({
                                             "firstName": (getUserByAccessToken && getUserByAccessToken.first_name),
                                             "lastName": (getUserByAccessToken && getUserByAccessToken.last_name),
                                             "email": (getUserByAccessToken && getUserByAccessToken.email),
@@ -128,74 +196,6 @@ module.exports = {
                                         });
 
                                     }
-                                });
-
-                            }
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
-    user: function(req, res) {
-        Machine.build({
-            inputs: {},
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // Load session data
-                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].load({
-                    "key": "integrationId"
-                }).setEnvironment({
-                    req: req
-                }).exec({
-                    "error": function(loadSessionData) {
-                        return exits.error({
-                            data: loadSessionData,
-                            status: 500
-                        });
-
-                    },
-                    "notFound": function(loadSessionData) {
-                        return exits.error({
-                            data: loadSessionData,
-                            status: 500
-                        });
-
-                    },
-                    "success": function(loadSessionData) {
-                        // Find One Integration
-                        sails.machines['_project_3202_0.0.3'].findOne_integration({
-                            "criteria": {
-                                id: loadSessionData
-                            }
-                        }).setEnvironment({
-                            sails: sails
-                        }).exec({
-                            "success": function(findOneIntegration) {
-                                return exits.respond({
-                                    data: findOneIntegration,
-                                    action: "respond_with_result_and_status",
-                                    status: 200
-                                });
-
-                            },
-                            "error": function(findOneIntegration) {
-                                return exits.error({
-                                    data: findOneIntegration,
-                                    status: 500
-                                });
-
-                            },
-                            "notFound": function(findOneIntegration) {
-                                return exits.error({
-                                    data: findOneIntegration,
-                                    status: 500
                                 });
 
                             }
