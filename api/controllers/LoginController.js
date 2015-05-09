@@ -17,7 +17,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Find One User
-                sails.machines['_project_3202_0.0.6'].findOne_user({
+                sails.machines['_project_3202_0.0.7'].findOne_user({
                     "criteria": {
                         email: inputs.email
                     }
@@ -65,7 +65,7 @@ module.exports = {
                                                 id: (findOneUser && findOneUser.id),
                                                 email: (findOneUser && findOneUser.email),
                                                 username: (findOneUser && findOneUser.username),
-                                                gravatar: (findOneUser && findOneUser.gravatar)
+                                                avatarUrl: (findOneUser && findOneUser.avatarUrl)
                                             },
                                             action: "respond_with_value_and_status",
                                             status: 200

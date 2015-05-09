@@ -57,6 +57,10 @@ function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
     updateProfile: function(){
       uiMe.syncing.form = true;
 
+      if($scope.user.newPassword.length < 6){
+        $scope.user.newPassword = 'null';
+      }
+
       uiMe.updateProfile($scope.user)
       .then(function onResponse(){
         $scope.editProfile = false;

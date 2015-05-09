@@ -4,9 +4,9 @@
 
 	<md-content layout-padding layout="column" layout-gtr-sm="row" ng-show="!editProfile">
 		<div>
-			<img ng-src="{{ uiMe.gravatar }}" width="200">
+			<img ng-src="{{ uiMe.avatarUrl }}" width="200">
 		</div>
-		<div>
+		<div class="user-info">
 			<h3 class="md-display-1">{{ uiMe.username }}</h3>
 			<p class="md-body-2">{{ uiMe.email }}</p>
 		</div>
@@ -14,7 +14,7 @@
 
 	<md-content layout-padding layout="column" layout-gtr-sm="row" ng-show="editProfile">
 		<div>
-			<img ng-src="{{ uiMe.gravatar }}" width="200">
+			<img ng-src="{{ uiMe.avatarUrl }}" width="200">
 		</div>
 		<div>
 			<form name="profileForm" class="profile-form" ng-submit="intent.updateProfile();">

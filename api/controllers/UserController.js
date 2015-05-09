@@ -20,8 +20,170 @@ module.exports = {
                 respond: {}
             },
             fn: function(inputs, exits) {
-                return exits.respond({
-                    action: 'compiler_error'
+                // Get image URL
+                sails.machines['af6a106f-a2cc-4170-a08a-86f2f5eabc38_1.1.4'].getImageUrl({
+                    "emailAddress": inputs.email,
+                    "gravatarSize": 500,
+                    "defaultImage": "http://thecatapi.com/api/images/get?format=src&size=small&type=jpg"
+                }).exec({
+                    "error": function(getImageURL) {
+                        return exits.error({
+                            data: getImageURL,
+                            status: 500
+                        });
+
+                    },
+                    "encodingFailed": function(getImageURL) {
+                        return exits.respond({
+                            action: "respond_with_status",
+                            status: 500
+                        });
+
+                    },
+                    "success": function(getImageURL) {
+                        // Encrypt password
+                        sails.machines['e05a71f7-485d-443a-803e-029b84fe73a4_2.2.0'].encryptPassword({
+                            "password": inputs.password
+                        }).exec({
+                            "error": function(encryptPassword) {
+                                return exits.error({
+                                    data: encryptPassword,
+                                    status: 500
+                                });
+
+                            },
+                            "success": function(encryptPassword) {
+                                // Load session data
+                                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].load({
+                                    "key": "integrationId"
+                                }).setEnvironment({
+                                    req: req
+                                }).exec({
+                                    "error": function(loadSessionData) {
+                                        return exits.error({
+                                            data: loadSessionData,
+                                            status: 500
+                                        });
+
+                                    },
+                                    "notFound": function(loadSessionData) {
+                                        // Create User
+                                        sails.machines['_project_3202_0.0.7'].create_user({
+                                            "email": inputs.email,
+                                            "password": encryptPassword,
+                                            "avatarUrl": getImageURL,
+                                            "username": inputs.username,
+                                            "authToken": "null"
+                                        }).setEnvironment({
+                                            sails: sails
+                                        }).exec({
+                                            "success": function(createUser2) {
+                                                // Save to session
+                                                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].save({
+                                                    "key": "userId",
+                                                    "value": (createUser2 && createUser2.id)
+                                                }).setEnvironment({
+                                                    req: req
+                                                }).exec({
+                                                    "error": function(saveToSession2) {
+                                                        return exits.error({
+                                                            data: saveToSession2,
+                                                            status: 500
+                                                        });
+
+                                                    },
+                                                    "success": function(saveToSession2) {
+                                                        return exits.respond({
+                                                            action: "respond_with_status",
+                                                            status: 200
+                                                        });
+
+                                                    }
+                                                });
+
+                                            },
+                                            "error": function(createUser2) {
+                                                return exits.error({
+                                                    data: createUser2,
+                                                    status: 500
+                                                });
+
+                                            }
+                                        });
+
+                                    },
+                                    "success": function(loadSessionData) {
+                                        // Create User
+                                        sails.machines['_project_3202_0.0.7'].create_user({
+                                            "email": inputs.email,
+                                            "password": encryptPassword,
+                                            "avatarUrl": getImageURL,
+                                            "username": inputs.username,
+                                            "authToken": "null"
+                                        }).setEnvironment({
+                                            sails: sails
+                                        }).exec({
+                                            "success": function(createUser) {
+                                                // Update Integration
+                                                sails.machines['_project_3202_0.0.7'].update_integration({
+                                                    "userId": (createUser && createUser.id),
+                                                    "criteria": {
+                                                        id: loadSessionData
+                                                    }
+                                                }).setEnvironment({
+                                                    sails: sails
+                                                }).exec({
+                                                    "success": function(updateIntegration) {
+                                                        // Save to session
+                                                        sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].save({
+                                                            "key": "userId",
+                                                            "value": (createUser && createUser.id)
+                                                        }).setEnvironment({
+                                                            req: req
+                                                        }).exec({
+                                                            "error": function(saveToSession) {
+                                                                return exits.error({
+                                                                    data: saveToSession,
+                                                                    status: 500
+                                                                });
+
+                                                            },
+                                                            "success": function(saveToSession) {
+                                                                return exits.respond({
+                                                                    action: "respond_with_status",
+                                                                    status: 200
+                                                                });
+
+                                                            }
+                                                        });
+
+                                                    },
+                                                    "error": function(updateIntegration) {
+                                                        return exits.error({
+                                                            data: updateIntegration,
+                                                            status: 500
+                                                        });
+
+                                                    }
+                                                });
+
+                                            },
+                                            "error": function(createUser) {
+                                                return exits.error({
+                                                    data: createUser,
+                                                    status: 500
+                                                });
+
+                                            }
+                                        });
+
+                                    }
+                                });
+
+                            }
+                        });
+
+                    }
                 });
             }
         }).configure(req.params.all(), {
@@ -42,7 +204,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Destroy User
-                sails.machines['_project_3202_0.0.6'].destroy_user({
+                sails.machines['_project_3202_0.0.7'].destroy_user({
                     "criteria": {
                         id: inputs.id
                     }
@@ -79,7 +241,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // List (Blueprint) User
-                sails.machines['_project_3202_0.0.6'].blueprintFind_user({}).setEnvironment({
+                sails.machines['_project_3202_0.0.7'].blueprintFind_user({}).setEnvironment({
                     req: req,
                     sails: sails
                 }).exec({
@@ -118,7 +280,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Find One User
-                sails.machines['_project_3202_0.0.6'].findOne_user({
+                sails.machines['_project_3202_0.0.7'].findOne_user({
                     "criteria": {
                         id: inputs.id
                     }

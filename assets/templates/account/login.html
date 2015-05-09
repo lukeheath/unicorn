@@ -1,29 +1,33 @@
-<md-content layout-padding layout-margin id="login" class="simple-form" ng-cloak>
+<md-content layout-padding layout-margin id="login" class="content-wrap" ng-cloak>
 
-	<h1 class='md-display-2'>Log In</h1>
+	<h1 class="md-display-2">Log In</h1>
 
-	<form name="loginForm" ng-submit="intent.login();">
-		<md-input-container md-no-float>
-			<md-icon class="icon" md-font-icon="icon-person" alt="User"></md-icon>
-			<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
-			<a class="md-body-1 input-link" ui-sref="signup" tabindex="-1">Sign Up</a>
-		</md-input-container>
-		<md-input-container md-no-float>
-			<md-icon class="icon" md-font-icon="icon-lock" alt="User"></md-icon>
-			<input ng-model="user.password" type="password" placeholder="Password" ng-required="true">
-			<a class="md-body-1 input-link" ui-sref="forgot" tabindex="-1">Forgot Password?</a>
-		</md-input-container>
+	<div class="simple-form">
 
-		<div class="button-wrap">
-			<md-button type="submit" class="md-theme-default md-raised md-primary large" ng-disabled="loginForm.$invalid">
-				<span ng-hide="uiMe.syncing.form">Log In</span>
-				<span ng-show="uiMe.syncing.form" class="spinner">
-					<md-progress-circular class="md-white syncing-button active" md-mode="indeterminate" ></md-progress-circular>
-				</span>
-			</md-button>
-		</div>
+		<form name="loginForm" ng-submit="intent.login();">
+			<md-input-container md-no-float>
+				<md-icon class="icon" md-font-icon="icon-person" alt="User"></md-icon>
+				<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+				<a class="md-body-1 input-link" ui-sref="signup" tabindex="-1">Sign Up</a>
+			</md-input-container>
+			<md-input-container md-no-float>
+				<md-icon class="icon" md-font-icon="icon-lock" alt="User"></md-icon>
+				<input ng-model="user.password" type="password" placeholder="Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
+				<a class="md-body-1 input-link" ui-sref="forgot" tabindex="-1">Forgot Password?</a>
+			</md-input-container>
 
-	</form>
+			<div class="button-wrap">
+				<md-button type="submit" class="md-theme-default md-raised md-primary large" ng-disabled="loginForm.$invalid">
+					<span ng-hide="uiMe.syncing.form">Log In</span>
+					<span ng-show="uiMe.syncing.form" class="spinner">
+						<md-progress-circular class="md-white syncing-button active" md-mode="indeterminate" ></md-progress-circular>
+					</span>
+				</md-button>
+			</div>
+
+		</form>
+
+	</div>
 
 	<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()">
 		<md-icon md-font-icon="icon-facebook" alt="Facebook"></md-icon> Log in with Facebook

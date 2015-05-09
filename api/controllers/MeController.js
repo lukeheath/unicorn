@@ -13,7 +13,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Find One User
-                sails.machines['_project_3202_0.0.6'].findOne_user({
+                sails.machines['_project_3202_0.0.7'].findOne_user({
                     "criteria": {
                         authToken: inputs.token
                     }
@@ -37,7 +37,7 @@ module.exports = {
                             },
                             "success": function(saveToSession) {
                                 // Update User
-                                sails.machines['_project_3202_0.0.6'].update_user({
+                                sails.machines['_project_3202_0.0.7'].update_user({
                                     "authToken": "null",
                                     "criteria": {
                                         id: (findOneUser && findOneUser.id)
@@ -104,7 +104,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Find One User
-                sails.machines['_project_3202_0.0.6'].findOne_user({
+                sails.machines['_project_3202_0.0.7'].findOne_user({
                     "criteria": {
                         authToken: inputs.token
                     }
@@ -125,7 +125,7 @@ module.exports = {
                             },
                             "success": function(encryptPassword) {
                                 // Update User
-                                sails.machines['_project_3202_0.0.6'].update_user({
+                                sails.machines['_project_3202_0.0.7'].update_user({
                                     "password": encryptPassword,
                                     "criteria": {
                                         id: (findOneUser && findOneUser.id)
@@ -204,7 +204,7 @@ module.exports = {
                     },
                     "success": function(loadSessionData) {
                         // Find One User
-                        sails.machines['_project_3202_0.0.6'].findOne_user({
+                        sails.machines['_project_3202_0.0.7'].findOne_user({
                             "criteria": {
                                 id: loadSessionData
                             }
@@ -217,7 +217,7 @@ module.exports = {
                                         id: (findOneUser && findOneUser.id),
                                         email: (findOneUser && findOneUser.email),
                                         username: (findOneUser && findOneUser.username),
-                                        gravatar: (findOneUser && findOneUser.gravatar)
+                                        avatarUrl: (findOneUser && findOneUser.avatarUrl)
                                     },
                                     action: "respond_with_value_and_status",
                                     status: 200
@@ -293,7 +293,7 @@ module.exports = {
                     },
                     "success": function(loadSessionData) {
                         // Find One User
-                        sails.machines['_project_3202_0.0.6'].findOne_user({
+                        sails.machines['_project_3202_0.0.7'].findOne_user({
                             "criteria": {
                                 id: loadSessionData
                             }
@@ -345,7 +345,7 @@ module.exports = {
                                                 // If equal (===)
                                                 sails.machines['4bf9c923-efd3-4077-b3e1-6b8d84d740c0_0.3.0'].ifEqual({
                                                     "a": inputs.newPassword,
-                                                    "b": "no"
+                                                    "b": "null"
                                                 }).exec({
                                                     "error": function(ifEqual) {
                                                         return exits.error({
@@ -368,10 +368,9 @@ module.exports = {
                                                             },
                                                             "success": function(encryptPassword) {
                                                                 // Update User
-                                                                sails.machines['_project_3202_0.0.6'].update_user({
+                                                                sails.machines['_project_3202_0.0.7'].update_user({
                                                                     "email": inputs.email,
                                                                     "password": encryptPassword,
-                                                                    "gravatar": getImageURL,
                                                                     "username": inputs.username,
                                                                     "criteria": {
                                                                         id: (findOneUser && findOneUser.id)
@@ -402,9 +401,8 @@ module.exports = {
                                                     },
                                                     "success": function(ifEqual) {
                                                         // Update User
-                                                        sails.machines['_project_3202_0.0.6'].update_user({
+                                                        sails.machines['_project_3202_0.0.7'].update_user({
                                                             "email": inputs.email,
-                                                            "gravatar": getImageURL,
                                                             "username": inputs.username,
                                                             "criteria": {
                                                                 id: (findOneUser && findOneUser.id)

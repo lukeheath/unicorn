@@ -1,4 +1,4 @@
-<md-content layout-padding layout-margin id="signup" class="simple-form">
+<md-content layout-padding layout-margin id="signup" class="content-wrap simple-form">
 
 	<span ng-if="!uiMe.integration.id">
 		<h1 class='md-display-2'>Sign Up</h1>
@@ -35,7 +35,7 @@
 
 	</form>
 
-	<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()">
+	<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()" ng-hide="uiMe.integration.id">
 		<md-icon md-font-icon="icon-facebook" alt="Facebook"></md-icon> Sign up with Facebook
 	</md-button>
 

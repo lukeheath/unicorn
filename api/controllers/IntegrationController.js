@@ -1,5 +1,24 @@
 var Machine = require("machine");
 module.exports = {
+    find: function(req, res) {
+        Machine.build({
+            inputs: {},
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                return exits.respond({
+                    action: "display_view",
+                    status: 200,
+                    view: "integration",
+                    data: undefined
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
     user: function(req, res) {
         Machine.build({
             inputs: {},
@@ -29,7 +48,7 @@ module.exports = {
                     },
                     "success": function(loadSessionData) {
                         // Find One Integration
-                        sails.machines['_project_3202_0.0.6'].findOne_integration({
+                        sails.machines['_project_3202_0.0.7'].findOne_integration({
                             "criteria": {
                                 id: loadSessionData
                             }
@@ -108,7 +127,7 @@ module.exports = {
                             },
                             "success": function(getUserByAccessToken) {
                                 // Find One User
-                                sails.machines['_project_3202_0.0.6'].findOne_user({
+                                sails.machines['_project_3202_0.0.7'].findOne_user({
                                     "criteria": {
                                         email: (getUserByAccessToken && getUserByAccessToken.email)
                                     }
@@ -150,7 +169,7 @@ module.exports = {
                                     },
                                     "notFound": function(findOneUser) {
                                         // Create Integration
-                                        sails.machines['_project_3202_0.0.6'].create_integration({
+                                        sails.machines['_project_3202_0.0.7'].create_integration({
                                             "firstName": (getUserByAccessToken && getUserByAccessToken.first_name),
                                             "lastName": (getUserByAccessToken && getUserByAccessToken.last_name),
                                             "email": (getUserByAccessToken && getUserByAccessToken.email),
@@ -202,25 +221,6 @@ module.exports = {
                         });
 
                     }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
-    find: function(req, res) {
-        Machine.build({
-            inputs: {},
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                return exits.respond({
-                    action: "display_view",
-                    status: 200,
-                    view: "integration",
-                    data: undefined
                 });
             }
         }).configure(req.params.all(), {

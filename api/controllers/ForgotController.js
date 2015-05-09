@@ -13,7 +13,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Find One User
-                sails.machines['_project_3202_0.0.6'].findOne_user({
+                sails.machines['_project_3202_0.0.7'].findOne_user({
                     "criteria": {
                         email: inputs.email
                     }
@@ -34,7 +34,7 @@ module.exports = {
                             },
                             "success": function(generateRandomAlphanumeric) {
                                 // Update User
-                                sails.machines['_project_3202_0.0.6'].update_user({
+                                sails.machines['_project_3202_0.0.7'].update_user({
                                     "authToken": generateRandomAlphanumeric,
                                     "criteria": {
                                         id: (findOneUser && findOneUser.id)
