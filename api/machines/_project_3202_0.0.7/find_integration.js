@@ -25,15 +25,13 @@ module.exports = {
     "success": {
       "friendlyName": "then",
       "example": [{
-        "firstName": "scott",
-        "lastName": "scott",
-        "email": "scott",
-        "type": "scott",
-        "userId": 123,
-        "gender": "scott",
+        "email": "bilbo@baggins.com",
+        "userId": "123",
+        "type": "facebook",
+        "meta": "Stringified integration meta",
         "id": 123,
-        "createdAt": "2015-04-28T15:39:34.352Z",
-        "updatedAt": "2015-04-28T15:39:34.352Z"
+        "createdAt": "2015-05-09T20:43:03.536Z",
+        "updatedAt": "2015-05-09T20:43:03.536Z"
       }]
     },
     "error": {
