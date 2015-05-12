@@ -1,24 +1,5 @@
 var Machine = require("machine");
 module.exports = {
-    find: function(req, res) {
-        Machine.build({
-            inputs: {},
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                return exits.respond({
-                    action: "display_view",
-                    status: 200,
-                    view: "integration",
-                    data: undefined
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
     user: function(req, res) {
         Machine.build({
             inputs: {},
@@ -189,10 +170,10 @@ module.exports = {
                                             "success": function(stringifyAsJSON) {
                                                 // Create Integration
                                                 sails.machines['_project_3202_0.0.7'].create_integration({
-                                                    "email": (getUserByAccessToken && getUserByAccessToken.email),
-                                                    "userId": "0",
                                                     "type": "facebook",
-                                                    "meta": stringifyAsJSON
+                                                    "email": (getUserByAccessToken && getUserByAccessToken.email),
+                                                    "meta": stringifyAsJSON,
+                                                    "userId": 0
                                                 }).setEnvironment({
                                                     sails: sails
                                                 }).exec({
@@ -240,6 +221,25 @@ module.exports = {
                         });
 
                     }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
+    find: function(req, res) {
+        Machine.build({
+            inputs: {},
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                return exits.respond({
+                    action: "display_view",
+                    status: 200,
+                    view: "integration",
+                    data: undefined
                 });
             }
         }).configure(req.params.all(), {

@@ -1,15 +1,5 @@
 module.exports = {
   "inputs": {
-    "email": {
-      "example": "bilbo@baggins.com",
-      "friendlyName": "email",
-      "required": true
-    },
-    "password": {
-      "example": "abc123",
-      "friendlyName": "password",
-      "required": true
-    },
     "avatarUrl": {
       "example": "http://gravatar.com/bilbo",
       "friendlyName": "avatarUrl",
@@ -24,20 +14,30 @@ module.exports = {
       "example": "abc123abc123abc123",
       "friendlyName": "authToken",
       "required": true
+    },
+    "password": {
+      "example": "abc123",
+      "friendlyName": "password",
+      "required": true
+    },
+    "email": {
+      "example": "bilbo@baggins.com",
+      "friendlyName": "email",
+      "required": true
     }
   },
   "exits": {
     "success": {
       "friendlyName": "then",
       "example": {
-        "email": "bilbo@baggins.com",
-        "password": "abc123",
         "avatarUrl": "http://gravatar.com/bilbo",
         "username": "bilbobaggins",
         "authToken": "abc123abc123abc123",
+        "password": "abc123",
+        "email": "bilbo@baggins.com",
         "id": 123,
-        "createdAt": "2015-05-09T02:13:15.232Z",
-        "updatedAt": "2015-05-09T02:13:15.232Z"
+        "createdAt": "2015-05-12T15:25:33.860Z",
+        "updatedAt": "2015-05-12T15:25:33.860Z"
       }
     },
     "error": {

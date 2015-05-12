@@ -1,1 +1,1 @@
-{"attributes":{"email":{"type":"string","defaultsTo":null},"userId":{"type":"string","defaultsTo":null},"type":{"type":"string","defaultsTo":null},"meta":{"type":"string","defaultsTo":null}},"globalId":"Integration","identity":"integration"}
+{"attributes":{"type":{"type":"string","defaultsTo":null},"email":{"type":"string","defaultsTo":null},"meta":{"type":"string","defaultsTo":null},"userId":{"type":"float","defaultsTo":null}},"globalId":"Integration","identity":"integration"}

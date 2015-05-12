@@ -1,81 +1,5 @@
 var Machine = require("machine");
 module.exports = {
-    get_find: function(req, res) {
-        Machine.build({
-            inputs: {},
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // List (Blueprint) User
-                sails.machines['_project_3202_0.0.7'].blueprintFind_user({}).setEnvironment({
-                    req: req,
-                    sails: sails
-                }).exec({
-                    "success": function(listBlueprintUser) {
-                        return exits.respond({
-                            data: listBlueprintUser,
-                            action: "respond_with_result_and_status",
-                            status: 200
-                        });
-
-                    },
-                    "error": function(listBlueprintUser) {
-                        return exits.error({
-                            data: listBlueprintUser,
-                            status: 500
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
-    delete_$id: function(req, res) {
-        Machine.build({
-            inputs: {
-                "id": {
-                    "example": "abc123",
-                    "required": true
-                }
-            },
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // Destroy User
-                sails.machines['_project_3202_0.0.7'].destroy_user({
-                    "criteria": {
-                        id: inputs.id
-                    }
-                }).setEnvironment({
-                    sails: sails
-                }).exec({
-                    "success": function(destroyUser) {
-                        return exits.respond({
-                            data: destroyUser,
-                            action: "respond_with_result_and_status",
-                            status: 200
-                        });
-
-                    },
-                    "error": function(destroyUser) {
-                        return exits.error({
-                            data: destroyUser,
-                            status: 500
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
     post_create: function(req, res) {
         Machine.build({
             inputs: {
@@ -202,7 +126,6 @@ module.exports = {
                                             "success": function(createUser) {
                                                 // Update Integration
                                                 sails.machines['_project_3202_0.0.7'].update_integration({
-                                                    "userId": (createUser && createUser.id),
                                                     "criteria": {
                                                         id: loadSessionData
                                                     }
@@ -257,6 +180,82 @@ module.exports = {
                                 });
 
                             }
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
+    get_find: function(req, res) {
+        Machine.build({
+            inputs: {},
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // List (Blueprint) User
+                sails.machines['_project_3202_0.0.7'].blueprintFind_user({}).setEnvironment({
+                    req: req,
+                    sails: sails
+                }).exec({
+                    "success": function(listBlueprintUser) {
+                        return exits.respond({
+                            data: listBlueprintUser,
+                            action: "respond_with_result_and_status",
+                            status: 200
+                        });
+
+                    },
+                    "error": function(listBlueprintUser) {
+                        return exits.error({
+                            data: listBlueprintUser,
+                            status: 500
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
+    delete_$id: function(req, res) {
+        Machine.build({
+            inputs: {
+                "id": {
+                    "example": "abc123",
+                    "required": true
+                }
+            },
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // Destroy User
+                sails.machines['_project_3202_0.0.7'].destroy_user({
+                    "criteria": {
+                        id: inputs.id
+                    }
+                }).setEnvironment({
+                    sails: sails
+                }).exec({
+                    "success": function(destroyUser) {
+                        return exits.respond({
+                            data: destroyUser,
+                            action: "respond_with_result_and_status",
+                            status: 200
+                        });
+
+                    },
+                    "error": function(destroyUser) {
+                        return exits.error({
+                            data: destroyUser,
+                            status: 500
                         });
 
                     }

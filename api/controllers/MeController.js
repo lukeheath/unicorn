@@ -1,165 +1,5 @@
 var Machine = require("machine");
 module.exports = {
-    authenticate: function(req, res) {
-        Machine.build({
-            inputs: {
-                "token": {
-                    "example": "abc123",
-                    "required": true
-                }
-            },
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // Find One User
-                sails.machines['_project_3202_0.0.7'].findOne_user({
-                    "criteria": {
-                        authToken: inputs.token
-                    }
-                }).setEnvironment({
-                    sails: sails
-                }).exec({
-                    "success": function(findOneUser) {
-                        // Save to session
-                        sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].save({
-                            "key": "userId",
-                            "value": (findOneUser && findOneUser.id)
-                        }).setEnvironment({
-                            req: req
-                        }).exec({
-                            "error": function(saveToSession) {
-                                return exits.error({
-                                    data: saveToSession,
-                                    status: 500
-                                });
-
-                            },
-                            "success": function(saveToSession) {
-                                // Update User
-                                sails.machines['_project_3202_0.0.7'].update_user({
-                                    "authToken": "null",
-                                    "criteria": {
-                                        id: (findOneUser && findOneUser.id)
-                                    }
-                                }).setEnvironment({
-                                    sails: sails
-                                }).exec({
-                                    "success": function(updateUser) {
-                                        return exits.respond({
-                                            action: "respond_with_status",
-                                            status: 200
-                                        });
-
-                                    },
-                                    "error": function(updateUser) {
-                                        return exits.error({
-                                            data: updateUser,
-                                            status: 500
-                                        });
-
-                                    }
-                                });
-
-                            }
-                        });
-
-                    },
-                    "error": function(findOneUser) {
-                        return exits.error({
-                            data: findOneUser,
-                            status: 500
-                        });
-
-                    },
-                    "notFound": function(findOneUser) {
-                        return exits.respond({
-                            data: "Invalid authorization code: " + inputs.token,
-                            action: "respond_with_value_and_status",
-                            status: 500
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
-    get_find: function(req, res) {
-        Machine.build({
-            inputs: {},
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // Load session data
-                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].load({
-                    "key": "userId"
-                }).setEnvironment({
-                    req: req
-                }).exec({
-                    "error": function(loadSessionData) {
-                        return exits.error({
-                            data: loadSessionData,
-                            status: 500
-                        });
-
-                    },
-                    "notFound": function(loadSessionData) {
-                        return exits.respond({
-                            action: "respond_with_status",
-                            status: "403"
-                        });
-
-                    },
-                    "success": function(loadSessionData) {
-                        // Find One User
-                        sails.machines['_project_3202_0.0.7'].findOne_user({
-                            "criteria": {
-                                id: loadSessionData
-                            }
-                        }).setEnvironment({
-                            sails: sails
-                        }).exec({
-                            "success": function(findOneUser) {
-                                return exits.respond({
-                                    data: {
-                                        id: (findOneUser && findOneUser.id),
-                                        email: (findOneUser && findOneUser.email),
-                                        username: (findOneUser && findOneUser.username),
-                                        avatarUrl: (findOneUser && findOneUser.avatarUrl)
-                                    },
-                                    action: "respond_with_value_and_status",
-                                    status: 200
-                                });
-
-                            },
-                            "error": function(findOneUser) {
-                                return exits.error({
-                                    data: findOneUser,
-                                    status: 500
-                                });
-
-                            },
-                            "notFound": function(findOneUser) {
-                                return exits.respond({
-                                    action: "respond_with_status",
-                                    status: "404"
-                                });
-
-                            }
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
     reset: function(req, res) {
         Machine.build({
             inputs: {
@@ -451,6 +291,166 @@ module.exports = {
                                 });
 
                             }
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
+    get_find: function(req, res) {
+        Machine.build({
+            inputs: {},
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // Load session data
+                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].load({
+                    "key": "userId"
+                }).setEnvironment({
+                    req: req
+                }).exec({
+                    "error": function(loadSessionData) {
+                        return exits.error({
+                            data: loadSessionData,
+                            status: 500
+                        });
+
+                    },
+                    "notFound": function(loadSessionData) {
+                        return exits.respond({
+                            action: "respond_with_status",
+                            status: "403"
+                        });
+
+                    },
+                    "success": function(loadSessionData) {
+                        // Find One User
+                        sails.machines['_project_3202_0.0.7'].findOne_user({
+                            "criteria": {
+                                id: loadSessionData
+                            }
+                        }).setEnvironment({
+                            sails: sails
+                        }).exec({
+                            "success": function(findOneUser) {
+                                return exits.respond({
+                                    data: {
+                                        id: (findOneUser && findOneUser.id),
+                                        email: (findOneUser && findOneUser.email),
+                                        username: (findOneUser && findOneUser.username),
+                                        avatarUrl: (findOneUser && findOneUser.avatarUrl)
+                                    },
+                                    action: "respond_with_value_and_status",
+                                    status: 200
+                                });
+
+                            },
+                            "error": function(findOneUser) {
+                                return exits.error({
+                                    data: findOneUser,
+                                    status: 500
+                                });
+
+                            },
+                            "notFound": function(findOneUser) {
+                                return exits.respond({
+                                    action: "respond_with_status",
+                                    status: "404"
+                                });
+
+                            }
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
+    authenticate: function(req, res) {
+        Machine.build({
+            inputs: {
+                "token": {
+                    "example": "abc123",
+                    "required": true
+                }
+            },
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // Find One User
+                sails.machines['_project_3202_0.0.7'].findOne_user({
+                    "criteria": {
+                        authToken: inputs.token
+                    }
+                }).setEnvironment({
+                    sails: sails
+                }).exec({
+                    "success": function(findOneUser) {
+                        // Save to session
+                        sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].save({
+                            "key": "userId",
+                            "value": (findOneUser && findOneUser.id)
+                        }).setEnvironment({
+                            req: req
+                        }).exec({
+                            "error": function(saveToSession) {
+                                return exits.error({
+                                    data: saveToSession,
+                                    status: 500
+                                });
+
+                            },
+                            "success": function(saveToSession) {
+                                // Update User
+                                sails.machines['_project_3202_0.0.7'].update_user({
+                                    "authToken": "null",
+                                    "criteria": {
+                                        id: (findOneUser && findOneUser.id)
+                                    }
+                                }).setEnvironment({
+                                    sails: sails
+                                }).exec({
+                                    "success": function(updateUser) {
+                                        return exits.respond({
+                                            action: "respond_with_status",
+                                            status: 200
+                                        });
+
+                                    },
+                                    "error": function(updateUser) {
+                                        return exits.error({
+                                            data: updateUser,
+                                            status: 500
+                                        });
+
+                                    }
+                                });
+
+                            }
+                        });
+
+                    },
+                    "error": function(findOneUser) {
+                        return exits.error({
+                            data: findOneUser,
+                            status: 500
+                        });
+
+                    },
+                    "notFound": function(findOneUser) {
+                        return exits.respond({
+                            data: "Invalid authorization code: " + inputs.token,
+                            action: "respond_with_value_and_status",
+                            status: 500
                         });
 
                     }
