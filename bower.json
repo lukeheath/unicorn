@@ -1,0 +1,34 @@
+{
+  "name": "Unicorn",
+  "version": "0.0.1",
+  "homepage": "https://github.com/lukeheath/unicorn",
+  "authors": [
+    "Luke Heath <luke@lukeheath.com>"
+  ],
+  "description": "Searching for the perfect seed.",
+  "main": "app.js",
+  "keywords": [
+    "Node",
+    "Angular",
+    "Sails",
+    "Treeline",
+    "NASTy"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-animate": "~1.4.0",
+    "angular-aria": "~1.4.0",
+    "angular-material": "~0.9.6",
+    "angular-touch": "~1.4.0",
+    "angular-ui-router": "~0.2.15",
+    "lodash": "~3.9.3"
+  }
+}
