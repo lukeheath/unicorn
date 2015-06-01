@@ -1,6 +1,6 @@
 var Machine = require("machine");
 module.exports = {
-    user: function(req, res) {
+    'user': function(req, res) {
         Machine.build({
             inputs: {},
             exits: {
@@ -68,7 +68,7 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    facebook: function(req, res) {
+    'facebook': function(req, res) {
         Machine.build({
             inputs: {
                 "code": {
@@ -228,7 +228,7 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    find: function(req, res) {
+    'find': function(req, res) {
         Machine.build({
             inputs: {},
             exits: {

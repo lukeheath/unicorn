@@ -1,6 +1,6 @@
 var Machine = require("machine");
 module.exports = {
-    post_create: function(req, res) {
+    'post_create': function(req, res) {
         Machine.build({
             inputs: {
                 "email": {
@@ -190,7 +190,7 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    get_find: function(req, res) {
+    'get_find': function(req, res) {
         Machine.build({
             inputs: {},
             exits: {
@@ -224,7 +224,7 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    delete_$id: function(req, res) {
+    'delete_$id': function(req, res) {
         Machine.build({
             inputs: {
                 "id": {
@@ -266,7 +266,7 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    get_$id: function(req, res) {
+    'get_$id': function(req, res) {
         Machine.build({
             inputs: {
                 "id": {
@@ -315,7 +315,7 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    facebook: function(req, res) {
+    'facebook': function(req, res) {
         Machine.build({
             inputs: {},
             exits: {

@@ -1,6 +1,6 @@
 var Machine = require("machine");
 module.exports = {
-    reset: function(req, res) {
+    'reset': function(req, res) {
         Machine.build({
             inputs: {
                 "token": {
@@ -88,7 +88,7 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    authenticate: function(req, res) {
+    'authenticate': function(req, res) {
         Machine.build({
             inputs: {
                 "token": {
@@ -175,7 +175,7 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    put_update: function(req, res) {
+    'put_update': function(req, res) {
         Machine.build({
             inputs: {
                 "currentPassword": {
@@ -388,7 +388,7 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    get_find: function(req, res) {
+    'get_find': function(req, res) {
         Machine.build({
             inputs: {},
             exits: {

@@ -1,6 +1,6 @@
 var Machine = require("machine");
 module.exports = {
-    find: function(req, res) {
+    'find': function(req, res) {
         Machine.build({
             inputs: {},
             exits: {

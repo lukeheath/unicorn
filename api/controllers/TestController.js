@@ -1,6 +1,6 @@
 var Machine = require("machine");
 module.exports = {
-    create: function(req, res) {
+    'create': function(req, res) {
         Machine.build({
             inputs: {},
             exits: {
