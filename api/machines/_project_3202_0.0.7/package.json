@@ -1,19 +1,24 @@
 {
   "dependencies": {},
   "machinepack": {
-    "machines": ["create_integration", "create_user", "destroy_integration", "destroy_user", "findOne_integration", "findOne_user", "blueprintFind_user", "find_integration", "find_user", "ModifyModel", "update_integration", "update_user"],
+    "machines": ["create_integration", "create_test", "create_user", "destroy_integration", "destroy_test", "destroy_user", "findOne_integration", "findOne_test", "findOne_user", "blueprintFind_user", "find_integration", "find_test", "find_user", "ModifyModel", "update_integration", "update_test", "update_user"],
     "machineVersions": {
       "create_integration": "0.0.24",
+      "create_test": "0.0.3",
       "create_user": "0.0.13",
       "destroy_integration": "0.0.24",
+      "destroy_test": "0.0.3",
       "destroy_user": "0.0.13",
       "findOne_integration": "0.0.24",
+      "findOne_test": "0.0.3",
       "findOne_user": "0.0.13",
       "blueprintFind_user": "0.0.4",
       "find_integration": "0.0.24",
+      "find_test": "0.0.3",
       "find_user": "0.0.13",
       "ModifyModel": "0.0.11",
       "update_integration": "0.0.24",
+      "update_test": "0.0.3",
       "update_user": "0.0.13"
     }
   }
