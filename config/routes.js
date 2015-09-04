@@ -1,19 +1,55 @@
 module.exports.routes = {
-  "post /me/reset": "MeController.reset",
-  "post /test": "TestController.create",
-  "get /user": "UserController.get_find",
-  "get /": "Home$Controller.find",
-  "post /login": "LoginController.create",
-  "post /user": "UserController.post_create",
-  "post /integration/facebook": "IntegrationController.facebook",
-  "put /me": "MeController.put_update",
-  "get /me": "MeController.get_find",
-  "post /logout": "LogoutController.create",
-  "post /me/authenticate": "MeController.authenticate",
-  "get /integration": "IntegrationController.find",
-  "get /integration/user": "IntegrationController.user",
-  "get /user/facebook": "UserController.facebook",
-  "post /forgot": "ForgotController.create",
-  "get /user/:id": "UserController.get_$id",
-  "delete /user/:id": "UserController.delete_$id"
+  "post /forgot": {
+    "target": "ForgotController.create"
+  },
+  "get /me": {
+    "target": "MeController.get_find"
+  },
+  "post /login": {
+    "target": "LoginController.create"
+  },
+  "post /integration/facebook": {
+    "target": "IntegrationController.facebook"
+  },
+  "get /user": {
+    "target": "UserController.get_find"
+  },
+  "post /me/reset": {
+    "target": "MeController.reset"
+  },
+  "get /": {
+    "target": "Home$Controller.find"
+  },
+  "post /user": {
+    "target": "UserController.post_create"
+  },
+  "post /me/authenticate": {
+    "target": "MeController.authenticate"
+  },
+  "get /integration/user": {
+    "target": "IntegrationController.user"
+  },
+  "post /test": {
+    "target": "TestController.create"
+  },
+  "post /logout": {
+    "target": "LogoutController.create"
+  },
+  "get /integration": {
+    "target": "IntegrationController.find"
+  },
+  "put /me": {
+    "target": "MeController.put_update"
+  },
+  "get /user/facebook": {
+    "target": "UserController.facebook"
+  },
+  "get /user/:id": {
+    "target": "UserController.get_$id",
+    "skipAssets": true
+  },
+  "delete /user/:id": {
+    "target": "UserController.delete_$id",
+    "skipAssets": true
+  }
 };

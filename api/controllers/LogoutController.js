@@ -8,7 +8,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Load session data
-                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].load({
+                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.4.0'].load({
                     "key": "userId"
                 }).setEnvironment({
                     req: req
@@ -29,7 +29,7 @@ module.exports = {
                     },
                     "success": function(loadSessionData) {
                         // If defined
-                        sails.machines['4bf9c923-efd3-4077-b3e1-6b8d84d740c0_0.3.0'].ifDefined({
+                        sails.machines['4bf9c923-efd3-4077-b3e1-6b8d84d740c0_1.2.0'].ifDefined({
                             "value": loadSessionData
                         }).exec({
                             "error": function(ifDefined) {
@@ -48,7 +48,7 @@ module.exports = {
                             },
                             "success": function(ifDefined) {
                                 // Delete session key
-                                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].del({
+                                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.4.0'].del({
                                     "key": "userId"
                                 }).setEnvironment({
                                     req: req

@@ -4,8 +4,7 @@ module.exports = {
         Machine.build({
             inputs: {
                 "email": {
-                    "example": "abc123",
-                    "required": true
+                    "example": "abc123"
                 }
             },
             exits: {
@@ -13,7 +12,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Find One User
-                sails.machines['_project_3202_0.0.7'].findOne_user({
+                sails.machines['_project_3202_0.0.15'].findOne_user({
                     "criteria": {
                         email: inputs.email
                     }
@@ -21,21 +20,19 @@ module.exports = {
                     sails: sails
                 }).exec({
                     "success": function(findOneUser) {
-                        // Generate random alphanumeric
-                        sails.machines['0ccd2b47-a58e-4f8c-a3fd-d5a4ec77bfd5_4.4.0'].generateRandomAlphanumeric({
-                            "numChars": 40
-                        }).exec({
-                            "error": function(generateRandomAlphanumeric) {
+                        // Unique(ish)
+                        sails.machines['03558d7e-53ad-4e20-b03f-ddd54c34ce3c_4.2.0'].unique({}).exec({
+                            "error": function(uniqueIsh) {
                                 return exits.error({
-                                    data: generateRandomAlphanumeric,
+                                    data: uniqueIsh,
                                     status: 500
                                 });
 
                             },
-                            "success": function(generateRandomAlphanumeric) {
+                            "success": function(uniqueIsh) {
                                 // Update User
-                                sails.machines['_project_3202_0.0.7'].update_user({
-                                    "authToken": generateRandomAlphanumeric,
+                                sails.machines['_project_3202_0.0.15'].update_user({
+                                    "authToken": uniqueIsh,
                                     "criteria": {
                                         id: (findOneUser && findOneUser.id)
                                     }
@@ -50,7 +47,7 @@ module.exports = {
                                             "toEmail": (findOneUser && findOneUser.email),
                                             "toName": (findOneUser && findOneUser.username),
                                             "subject": "Unicorn Password Recovery",
-                                            "htmlMessage": "<h2 style=\"color:pink;\">Did you forget your password?</h2> <p style=\"color:purple;font-weight:bold;font-size:16px;\">If so, you can reset it at http://localhost:1337/#/reset/" + generateRandomAlphanumeric + "</p><h2 style=\"color:purple;\"><em>Hooray!</em></h2><img src=\"http://i.imgur.com/LHbMISf.gif?1\">",
+                                            "htmlMessage": "<h2 style=\"color:pink;\">Did you forget your password?</h2> <p style=\"color:purple;font-weight:bold;font-size:16px;\">If so, you can reset it at http://localhost:1337/#/reset/" + uniqueIsh + "</p><h2 style=\"color:purple;\"><em>Hooray!</em></h2><img src=\"http://i.imgur.com/LHbMISf.gif?1\">",
                                             "fromEmail": "donotreply@unicorn.io",
                                             "fromName": "Unicorn Recovery Service"
                                         }).exec({

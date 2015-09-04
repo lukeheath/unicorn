@@ -17,7 +17,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Find One User
-                sails.machines['_project_3202_0.0.7'].findOne_user({
+                sails.machines['_project_3202_0.0.15'].findOne_user({
                     "criteria": {
                         email: inputs.email
                     }
@@ -26,7 +26,7 @@ module.exports = {
                 }).exec({
                     "success": function(findOneUser) {
                         // Check password
-                        sails.machines['e05a71f7-485d-443a-803e-029b84fe73a4_2.2.0'].checkPassword({
+                        sails.machines['e05a71f7-485d-443a-803e-029b84fe73a4_2.3.0'].checkPassword({
                             "passwordAttempt": inputs.password,
                             "encryptedPassword": (findOneUser && findOneUser.password)
                         }).exec({
@@ -46,7 +46,7 @@ module.exports = {
                             },
                             "success": function(checkPassword) {
                                 // Save to session
-                                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.3.1'].save({
+                                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.4.0'].save({
                                     "key": "userId",
                                     "value": (findOneUser && findOneUser.id)
                                 }).setEnvironment({

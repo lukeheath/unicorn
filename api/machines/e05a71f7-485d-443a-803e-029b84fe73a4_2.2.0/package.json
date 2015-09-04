@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "machinepack-passwords": "2.2.0"
-  },
-  "machinepack": {
-    "machines": []
-  }
-}
