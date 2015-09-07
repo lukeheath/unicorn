@@ -17,7 +17,7 @@
           <img src="images/logo-icon.png" height="30px" height="auto">
         </a>
       </span>
-      <md-button class="md-icon-button nav-toggle" ng-click="intent.toggleSidenav('account')">
+      <md-button class="md-icon-button nav-toggle" aria-label="My Account" ng-click="intent.toggleSidenav('account')">
         <ng-md-icon icon="person" class="person" style="fill: white" size="28"></ng-md-icon>
       </md-button>
     </div>
@@ -34,23 +34,23 @@
 
     <div class="social" layout="row" layout-align="center">
       <span flex>
-        <md-button class="md-fab md-mini">
-          <md-icon class="icon" md-font-icon="icon-facebook" alt="Facebook"></md-icon>
+        <md-button class="md-fab md-mini" aria-label="Unicorn on Facebook">
+          <ng-md-icon icon="facebook" style="fill: white" size="22" alt="Facebook"></ng-md-icon>
         </md-button>
       </span>
       <span flex>
-        <md-button class="md-fab md-mini">
-          <md-icon class="icon" md-font-icon="icon-twitter" alt="Twitter"></md-icon>
+        <md-button class="md-fab md-mini" aria-label="Unicorn on Twitter">
+          <ng-md-icon icon="twitter" style="fill: white" size="22" alt="Twitter"></ng-md-icon>
         </md-button>
       </span>
       <span flex>
-        <md-button class="md-fab md-mini">
-          <md-icon class="icon" md-font-icon="icon-google-plus" alt="Google Plus"></md-icon>
+        <md-button class="md-fab md-mini" aria-label="Unicorn on Google Plus">
+          <ng-md-icon icon="google-plus" style="fill: white" size="22" alt="Google Plus"></ng-md-icon>
         </md-button>
       </span>
       <span flex>
-        <md-button class="md-fab md-mini">
-          <md-icon class="icon" md-font-icon="icon-youtube" alt="YouTube"></md-icon>
+        <md-button class="md-fab md-mini" aria-label="Unicorn on YouTube">
+          <ng-md-icon icon="play_arrow" style="fill: white" size="22" alt="YouTube"></ng-md-icon>
         </md-button>
       </span>
     </div>
