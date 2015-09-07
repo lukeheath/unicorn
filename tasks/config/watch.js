@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 		assets: {
 
 			// Assets to watch:
-			files: ['assets/**/*.js', 'tasks/pipeline.js', '!**/node_modules/**'],
+			files: ['assets/js/**/*.js', 'assets/styles/**/*.less', 'assets/templates/**/*.html', 'tasks/pipeline.js', '!**/node_modules/**'],
 
 			// When assets are changed:
 			tasks: ['syncAssets' , 'linkAssets'],
@@ -37,3 +37,4 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 };
+ 
