@@ -1,27 +1,27 @@
 module.exports.routes = {
-  "post /forgot": {
-    "target": "ForgotController.create"
+  "post /user": {
+    "target": "UserController.post_create"
   },
-  "get /me": {
-    "target": "MeController.get_find"
-  },
-  "post /login": {
-    "target": "LoginController.create"
-  },
-  "post /integration/facebook": {
-    "target": "IntegrationController.facebook"
-  },
-  "get /user": {
-    "target": "UserController.get_find"
+  "post /logout": {
+    "target": "LogoutController.create"
   },
   "post /me/reset": {
     "target": "MeController.reset"
   },
+  "get /me": {
+    "target": "MeController.get_find"
+  },
+  "put /me": {
+    "target": "MeController.put_update"
+  },
+  "post /integration/facebook": {
+    "target": "IntegrationController.facebook"
+  },
+  "get /integration": {
+    "target": "IntegrationController.find"
+  },
   "get /": {
     "target": "Home$Controller.find"
-  },
-  "post /user": {
-    "target": "UserController.post_create"
   },
   "post /me/authenticate": {
     "target": "MeController.authenticate"
@@ -29,20 +29,20 @@ module.exports.routes = {
   "get /integration/user": {
     "target": "IntegrationController.user"
   },
+  "post /forgot": {
+    "target": "ForgotController.create"
+  },
   "post /test": {
     "target": "TestController.create"
   },
-  "post /logout": {
-    "target": "LogoutController.create"
-  },
-  "get /integration": {
-    "target": "IntegrationController.find"
-  },
-  "put /me": {
-    "target": "MeController.put_update"
+  "post /login": {
+    "target": "LoginController.create"
   },
   "get /user/facebook": {
     "target": "UserController.facebook"
+  },
+  "get /user": {
+    "target": "UserController.get_find"
   },
   "get /user/:id": {
     "target": "UserController.get_$id",

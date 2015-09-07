@@ -20,8 +20,8 @@ module.exports = {
                     "callbackUrl": "http://localhost:1337/integration/"
                 }).exec({
                     "error": function(getAccessToken) {
-                        return exits.error({
-                            data: getAccessToken,
+                        return exits.respond({
+                            action: "respond_with_status",
                             status: 500
                         });
 
@@ -39,105 +39,120 @@ module.exports = {
 
                             },
                             "success": function(getUserByAccessToken) {
-                                // Find One User
-                                sails.machines['_project_3202_0.0.15'].findOne_user({
-                                    "criteria": {
-                                        email: (getUserByAccessToken && getUserByAccessToken.email)
-                                    }
-                                }).setEnvironment({
-                                    sails: sails
+                                // Log a message
+                                sails.machines['0ccd2b47-a58e-4f8c-a3fd-d5a4ec77bfd5_5.1.1'].log({
+                                    "value": getUserByAccessToken
                                 }).exec({
-                                    "success": function(findOneUser) {
-                                        // Save to session
-                                        sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.4.0'].save({
-                                            "key": "userId",
-                                            "value": (findOneUser && findOneUser.id)
-                                        }).setEnvironment({
-                                            req: req
-                                        }).exec({
-                                            "error": function(saveToSession) {
-                                                return exits.error({
-                                                    data: saveToSession,
-                                                    status: 500
-                                                });
-
-                                            },
-                                            "success": function(saveToSession) {
-                                                return exits.respond({
-                                                    data: "login",
-                                                    action: "respond_with_value_and_status",
-                                                    status: 200
-                                                });
-
-                                            }
-                                        });
-
-                                    },
-                                    "error": function(findOneUser) {
+                                    "error": function(logAMessage) {
                                         return exits.error({
-                                            data: findOneUser,
+                                            data: logAMessage,
                                             status: 500
                                         });
 
                                     },
-                                    "notFound": function(findOneUser) {
-                                        // Stringify as JSON
-                                        sails.machines['28cce2cd-1991-493d-8a0d-1532d85db9a8_1.2.1'].stringify({
-                                            "value": getUserByAccessToken
+                                    "success": function(logAMessage) {
+                                        // Find One User
+                                        sails.machines['_project_3202_0.0.15'].findOne_user({
+                                            "criteria": {
+                                                email: (getUserByAccessToken && getUserByAccessToken.email)
+                                            }
+                                        }).setEnvironment({
+                                            sails: sails
                                         }).exec({
-                                            "error": function(stringifyAsJSON) {
-                                                return exits.error({
-                                                    data: stringifyAsJSON,
-                                                    status: 500
-                                                });
-
-                                            },
-                                            "couldNotStringify": function(stringifyAsJSON) {
-                                                return exits.error({
-                                                    data: stringifyAsJSON,
-                                                    status: 500
-                                                });
-
-                                            },
-                                            "success": function(stringifyAsJSON) {
-                                                // Create Integration
-                                                sails.machines['_project_3202_0.0.15'].create_integration({
-                                                    "type": "facebook",
-                                                    "email": (getUserByAccessToken && getUserByAccessToken.email),
-                                                    "meta": stringifyAsJSON,
-                                                    "userId": 0
+                                            "success": function(findOneUser) {
+                                                // Save to session
+                                                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.4.0'].save({
+                                                    "key": "userId",
+                                                    "value": (findOneUser && findOneUser.id)
                                                 }).setEnvironment({
-                                                    sails: sails
+                                                    req: req
                                                 }).exec({
-                                                    "success": function(createIntegration) {
-                                                        // Save to session
-                                                        sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.4.0'].save({
-                                                            "key": "integrationId",
-                                                            "value": (createIntegration && createIntegration.id)
-                                                        }).setEnvironment({
-                                                            req: req
-                                                        }).exec({
-                                                            "error": function(saveToSession2) {
-                                                                return exits.error({
-                                                                    data: saveToSession2,
-                                                                    status: 500
-                                                                });
-
-                                                            },
-                                                            "success": function(saveToSession2) {
-                                                                return exits.respond({
-                                                                    action: "respond_with_status",
-                                                                    status: 200
-                                                                });
-
-                                                            }
+                                                    "error": function(saveToSession) {
+                                                        return exits.error({
+                                                            data: saveToSession,
+                                                            status: 500
                                                         });
 
                                                     },
-                                                    "error": function(createIntegration) {
+                                                    "success": function(saveToSession) {
+                                                        return exits.respond({
+                                                            data: "login",
+                                                            action: "respond_with_value_and_status",
+                                                            status: 200
+                                                        });
+
+                                                    }
+                                                });
+
+                                            },
+                                            "error": function(findOneUser) {
+                                                return exits.error({
+                                                    data: findOneUser,
+                                                    status: 500
+                                                });
+
+                                            },
+                                            "notFound": function(findOneUser) {
+                                                // Stringify as JSON
+                                                sails.machines['28cce2cd-1991-493d-8a0d-1532d85db9a8_1.2.1'].stringify({
+                                                    "value": getUserByAccessToken
+                                                }).exec({
+                                                    "error": function(stringifyAsJSON) {
                                                         return exits.error({
-                                                            data: createIntegration,
+                                                            data: stringifyAsJSON,
                                                             status: 500
+                                                        });
+
+                                                    },
+                                                    "couldNotStringify": function(stringifyAsJSON) {
+                                                        return exits.error({
+                                                            data: stringifyAsJSON,
+                                                            status: 500
+                                                        });
+
+                                                    },
+                                                    "success": function(stringifyAsJSON) {
+                                                        // Create Integration
+                                                        sails.machines['_project_3202_0.0.15'].create_integration({
+                                                            "type": "facebook",
+                                                            "email": (getUserByAccessToken && getUserByAccessToken.email),
+                                                            "meta": stringifyAsJSON,
+                                                            "userId": 0
+                                                        }).setEnvironment({
+                                                            sails: sails
+                                                        }).exec({
+                                                            "success": function(createIntegration) {
+                                                                // Save to session
+                                                                sails.machines['0ab17fbc-e31c-430d-85a4-929318f5e715_0.4.0'].save({
+                                                                    "key": "integrationId",
+                                                                    "value": (createIntegration && createIntegration.id)
+                                                                }).setEnvironment({
+                                                                    req: req
+                                                                }).exec({
+                                                                    "error": function(saveToSession2) {
+                                                                        return exits.error({
+                                                                            data: saveToSession2,
+                                                                            status: 500
+                                                                        });
+
+                                                                    },
+                                                                    "success": function(saveToSession2) {
+                                                                        return exits.respond({
+                                                                            action: "respond_with_status",
+                                                                            status: 200
+                                                                        });
+
+                                                                    }
+                                                                });
+
+                                                            },
+                                                            "error": function(createIntegration) {
+                                                                return exits.error({
+                                                                    data: createIntegration,
+                                                                    status: 500
+                                                                });
+
+                                                            }
                                                         });
 
                                                     }

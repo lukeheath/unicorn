@@ -4,7 +4,7 @@
 
 	<form name="forgotForm" ng-submit="intent.recoverPassword();">
 		<md-input-container md-no-float>
-			<md-icon class="icon" md-font-icon="icon-person" alt="User"></md-icon>
+			<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
 			<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
 		</md-input-container>
 

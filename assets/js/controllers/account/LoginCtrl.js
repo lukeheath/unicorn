@@ -51,7 +51,6 @@ function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
       .finally(function eitherWay(){
         uiMe.syncing.form = false;
       });
-
     }
 
   });

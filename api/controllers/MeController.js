@@ -121,9 +121,10 @@ module.exports = {
                                                             "success": function(encryptPassword) {
                                                                 // Update User
                                                                 sails.machines['_project_3202_0.0.15'].update_user({
-                                                                    "email": inputs.email,
-                                                                    "password": encryptPassword,
+                                                                    "avatarUrl": getImageURL,
                                                                     "username": inputs.username,
+                                                                    "password": encryptPassword,
+                                                                    "email": inputs.email,
                                                                     "criteria": {
                                                                         id: (findOneUser && findOneUser.id)
                                                                     }
@@ -154,8 +155,9 @@ module.exports = {
                                                     "success": function(ifEqual) {
                                                         // Update User
                                                         sails.machines['_project_3202_0.0.15'].update_user({
-                                                            "email": inputs.email,
+                                                            "avatarUrl": getImageURL,
                                                             "username": inputs.username,
+                                                            "email": inputs.email,
                                                             "criteria": {
                                                                 id: (findOneUser && findOneUser.id)
                                                             }

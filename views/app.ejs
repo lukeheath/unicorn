@@ -10,7 +10,7 @@
   <md-toolbar id="header">
     <div class="md-toolbar-tools">
       <md-button class="md-icon-button nav-toggle" aria-label="Menu" ng-click="intent.toggleSidenav('links')">
-        <md-icon class="icon" md-font-icon="icon-menu" alt="Menu"></md-icon>
+        <ng-md-icon icon="menu" style="fill: white" size="32"></ng-md-icon>
       </md-button>
       <span class="logo" flex>
         <a ui-sref="home">
@@ -18,7 +18,7 @@
         </a>
       </span>
       <md-button class="md-icon-button nav-toggle" ng-click="intent.toggleSidenav('account')">
-        <md-icon class="icon" md-font-icon="icon-person" alt="Menu"></md-icon>
+        <ng-md-icon icon="person" class="person" style="fill: white" size="28"></ng-md-icon>
       </md-button>
     </div>
   </md-toolbar>
@@ -29,8 +29,6 @@
     <md-button class="md-accent nav-link" ng-click="intent.logout()" ng-if="uiMe.id">Logout</md-button>
     <md-button class="md-accent nav-link" ui-sref="login" ng-if="!uiMe.id">Login</md-button>
     <md-button class="md-accent nav-link" ui-sref="signup" ng-if="!uiMe.id">Sign Up</md-button>
-
-</a>
 
     <md-divider></md-divider>
 
@@ -81,8 +79,6 @@
   <div id="content" layout="column">
 
     <div ui-view ng-hide="uiMe.syncing.app"></div>
-    
-    <md-progress-circular ng-show="uiMe.syncing.app" md-mode="indeterminate" class="md-accent syncing-app"></md-progress-circular>
 
   </div>
 

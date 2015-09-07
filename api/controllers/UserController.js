@@ -1,88 +1,5 @@
 var Machine = require("machine");
 module.exports = {
-    'get_find': function(req, res) {
-        Machine.build({
-            inputs: {},
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // List (Blueprint) User
-                sails.machines['_project_3202_0.0.15'].blueprintFind_user({}).setEnvironment({
-                    req: req,
-                    sails: sails
-                }).exec({
-                    "success": function(listBlueprintUser) {
-                        return exits.respond({
-                            data: listBlueprintUser,
-                            action: "respond_with_result_and_status",
-                            status: 200
-                        });
-
-                    },
-                    "error": function(listBlueprintUser) {
-                        return exits.error({
-                            data: listBlueprintUser,
-                            status: 500
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
-    'get_$id': function(req, res) {
-        Machine.build({
-            inputs: {
-                "id": {
-                    "example": "abc123",
-                    "required": true
-                }
-            },
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // Find One User
-                sails.machines['_project_3202_0.0.15'].findOne_user({
-                    "criteria": {
-                        id: inputs.id
-                    }
-                }).setEnvironment({
-                    sails: sails
-                }).exec({
-                    "success": function(findOneUser) {
-                        return exits.respond({
-                            data: findOneUser,
-                            action: "respond_with_result_and_status",
-                            status: 200
-                        });
-
-                    },
-                    "error": function(findOneUser) {
-                        return exits.error({
-                            data: findOneUser,
-                            status: 500
-                        });
-
-                    },
-                    "notFound": function(findOneUser) {
-                        return exits.error({
-                            data: findOneUser,
-                            status: 500
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
     'post_create': function(req, res) {
         Machine.build({
             inputs: {
@@ -107,7 +24,7 @@ module.exports = {
                 sails.machines['af6a106f-a2cc-4170-a08a-86f2f5eabc38_1.2.0'].getImageUrl({
                     "emailAddress": inputs.email,
                     "gravatarSize": 500,
-                    "defaultImage": "http://thecatapi.com/api/images/get?format=src&size=small&type=jpg"
+                    "defaultImage": "http://25.media.tumblr.com/tumblr_lvicb3NpzI1qzxlbjo1_250.jpg"
                 }).exec({
                     "error": function(getImageURL) {
                         return exits.error({
@@ -117,8 +34,8 @@ module.exports = {
 
                     },
                     "encodingFailed": function(getImageURL) {
-                        return exits.respond({
-                            action: "respond_with_status",
+                        return exits.error({
+                            data: getImageURL,
                             status: 500
                         });
 
@@ -263,6 +180,89 @@ module.exports = {
                                 });
 
                             }
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
+    'get_find': function(req, res) {
+        Machine.build({
+            inputs: {},
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // List (Blueprint) User
+                sails.machines['_project_3202_0.0.15'].blueprintFind_user({}).setEnvironment({
+                    req: req,
+                    sails: sails
+                }).exec({
+                    "success": function(listBlueprintUser) {
+                        return exits.respond({
+                            data: listBlueprintUser,
+                            action: "respond_with_result_and_status",
+                            status: 200
+                        });
+
+                    },
+                    "error": function(listBlueprintUser) {
+                        return exits.error({
+                            data: listBlueprintUser,
+                            status: 500
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
+    'get_$id': function(req, res) {
+        Machine.build({
+            inputs: {
+                "id": {
+                    "example": "abc123",
+                    "required": true
+                }
+            },
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // Find One User
+                sails.machines['_project_3202_0.0.15'].findOne_user({
+                    "criteria": {
+                        id: inputs.id
+                    }
+                }).setEnvironment({
+                    sails: sails
+                }).exec({
+                    "success": function(findOneUser) {
+                        return exits.respond({
+                            data: findOneUser,
+                            action: "respond_with_result_and_status",
+                            status: 200
+                        });
+
+                    },
+                    "error": function(findOneUser) {
+                        return exits.error({
+                            data: findOneUser,
+                            status: 500
+                        });
+
+                    },
+                    "notFound": function(findOneUser) {
+                        return exits.error({
+                            data: findOneUser,
+                            status: 500
                         });
 
                     }

@@ -22,7 +22,7 @@
 				<md-button type="submit" class="md-theme-default md-raised md-primary large" ng-disabled="loginForm.$invalid">
 					<span ng-hide="uiMe.syncing.form">Log In</span>
 					<span ng-show="uiMe.syncing.form" class="spinner">
-						<md-progress-circular class="md-white syncing-button active" md-mode="indeterminate" ></md-progress-circular>
+						<md-progress-circular class="md-white syncing-button" md-mode="indeterminate" md-diameter="25"></md-progress-circular>
 					</span>
 				</md-button>
 			</div>
@@ -32,7 +32,7 @@
 	</div>
 
 	<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()">
-		<md-icon md-font-icon="icon-facebook" alt="Facebook"></md-icon> Log in with Facebook
+		<ng-md-icon icon="facebook" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon> Log in with Facebook
 	</md-button>
 
 </md-content>
