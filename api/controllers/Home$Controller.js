@@ -8,8 +8,10 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 return exits.respond({
-                    action: "respond_with_status",
-                    status: 200
+                    action: "display_view",
+                    status: 200,
+                    view: "app",
+                    data: undefined
                 });
             }
         }).configure(req.params.all(), {

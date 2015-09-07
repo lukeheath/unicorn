@@ -22,6 +22,12 @@ function($scope, $rootScope, $state, $q, $mdSidenav, uiMe, uiList, uiErrorBus) {
   // When the application is initially rendered
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
+  // Make colors available to templates
+  $scope.mdColors = {
+    primary: '#673AB7',
+    accent: '#EC407A'
+  }
+
   // Create promise for app ready state
   var appReady = $q.defer();
   $rootScope.appReady = appReady.promise;

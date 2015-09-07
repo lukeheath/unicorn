@@ -11,15 +11,15 @@
 
 	<form name="signupForm" ng-submit="intent.signup()">
 		<md-input-container md-no-float>
-			<md-icon class="icon" md-font-icon="icon-person" alt="User"></md-icon>
+			<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
 			<input ng-model="user.username" type="text" placeholder="Username" ng-required="true">
 		</md-input-container>
 		<md-input-container md-no-float>
-			<md-icon class="icon" md-font-icon="icon-mail" alt="Email"></md-icon>
+			<ng-md-icon icon="email" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
 			<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
 		</md-input-container>
 		<md-input-container md-no-float>
-			<md-icon class="icon" md-font-icon="icon-lock" alt="User"></md-icon>
+			<ng-md-icon icon="lock" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
 			<input ng-model="user.password" type="password" placeholder="Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
 			<p class="md-body-1 input-desc">minimum 6 characters, alphanumeric</p>
 		</md-input-container>
@@ -36,7 +36,7 @@
 	</form>
 
 	<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()" ng-hide="uiMe.integration.id">
-		<md-icon md-font-icon="icon-facebook" alt="Facebook"></md-icon> Sign up with Facebook
+		<ng-md-icon icon="facebook" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon> Sign up with Facebook
 	</md-button>
 
 </md-content>
