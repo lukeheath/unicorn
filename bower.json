@@ -23,12 +23,12 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-animate": "~1.4.0",
-    "angular-aria": "~1.4.0",
-    "angular-material": "~0.9.6",
-    "angular-touch": "~1.4.0",
+    "angular": "~1.4.6",
+    "angular-animate": "~1.4.6",
+    "angular-aria": "~1.4.6",
+    "angular-material": "~0.11.0-rc2",
+    "angular-touch": "~1.4.6",
     "angular-ui-router": "~0.2.15",
-    "lodash": "~3.9.3"
+    "lodash": "~3.10.1"
   }
 }

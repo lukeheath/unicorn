@@ -324,7 +324,7 @@ module.exports = {
             fn: function(inputs, exits) {
                 // Get Facebook login URL
                 sails.machines['c8d25931-bf1e-4997-be03-18e7c605d85a_1.1.0'].getLoginUrl({
-                    "appId": "1384771718517334",
+                    "appId": "1606999912894581",
                     "callbackUrl": "http://localhost:1337/integration/",
                     "permissions": ["user_friends", "email", "public_profile"]
                 }).exec({
