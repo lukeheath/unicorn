@@ -30,6 +30,7 @@
     "angular-material-icons": "~0.5.0",
     "angular-touch": "~1.4.6",
     "angular-ui-router": "~0.2.15",
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "svg-morpheus": "~0.1.8"
   }
 }
