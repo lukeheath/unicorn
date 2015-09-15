@@ -1,0 +1,10 @@
+{
+  "machine": "send-html-email",
+  "expectations": [
+    {
+      "todo": true,
+      "using": {},
+      "outcome": "success"
+    }
+  ]
+}

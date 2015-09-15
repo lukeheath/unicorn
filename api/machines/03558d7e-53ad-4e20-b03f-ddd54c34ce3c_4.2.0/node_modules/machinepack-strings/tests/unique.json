@@ -1,0 +1,9 @@
+{
+  "machine": "unique",
+  "expectations": [
+    {
+      "using": {},
+      "outcome": "success"
+    }
+  ]
+}
