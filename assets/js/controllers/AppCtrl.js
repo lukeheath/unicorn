@@ -22,10 +22,10 @@ function($scope, $rootScope, $state, $q, $mdSidenav, uiMe, uiList, uiErrorBus) {
   // When the application is initially rendered
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
-  // Make colors available to templates
+  // Make colors available to templates for SVG icons
   $scope.mdColors = {
-    primary: '#673AB7',
-    accent: '#EC407A'
+    primary: '#673AB7', // deep-purple
+    accent: '#EC407A' // pink
   }
 
   // Create promise for app ready state
