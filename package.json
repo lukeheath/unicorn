@@ -28,7 +28,8 @@
   "keywords": [],
   "scripts": {
     "start": "node app.js",
-    "debug": "node debug app.js"
+    "debug": "node debug app.js",
+    "postinstall": "grunt prod",
   },
   "main": "app.js",
   "repository": {
