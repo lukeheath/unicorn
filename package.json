@@ -27,7 +27,6 @@
   "description": "a Sails application",
   "keywords": [],
   "scripts": {
-    "postinstall": "grunt prod",
     "start": "node app.js",
     "debug": "node debug app.js"
   },
