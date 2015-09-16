@@ -28,7 +28,8 @@
   "keywords": [],
   "scripts": {
     "start": "node app.js",
-    "debug": "node debug app.js"
+    "debug": "node debug app.js",
+    "postinstall": "node postinstall.js"
   },
   "main": "app.js",
   "repository": {
