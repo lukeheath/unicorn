@@ -67,7 +67,6 @@ config/local.js
 ################################################
 
 /node_modules
-assets/bower_components
 
 
 
