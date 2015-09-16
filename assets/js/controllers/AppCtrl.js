@@ -24,9 +24,9 @@ function($scope, $rootScope, $state, $q, $mdSidenav, uiMe, uiList, uiErrorBus) {
 
   // Make colors available to templates for SVG icons
   $scope.mdColors = {
-    primary: '#673AB7', // deep-purple
-    accent: '#EC407A' // pink
-  }
+    primary: '#673AB7',
+    accent: '#EC407A'
+  };
 
   // Create promise for app ready state
   var appReady = $q.defer();
