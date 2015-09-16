@@ -12,11 +12,13 @@
 
 angular.module('unicorn')
 .controller('AppCtrl', [
-        '$scope', '$rootScope', '$state', '$q', '$mdSidenav', 'uiMe', 'uiList', 'uiErrorBus',
-function($scope, $rootScope, $state, $q, $mdSidenav, uiMe, uiList, uiErrorBus) {
+        '$scope', '$rootScope', '$state', '$q', '$mdSidenav', '$mdTheming', 'uiMe', 'uiList', 'uiErrorBus',
+function($scope, $rootScope, $state, $q, $mdSidenav, $mdTheming, uiMe, uiList, uiErrorBus) {
 
   window.uiMe = uiMe;
   $scope.uiMe = uiMe;
+
+  window.theme = $mdTheming;
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // When the application is initially rendered
