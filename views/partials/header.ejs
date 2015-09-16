@@ -1,0 +1,15 @@
+<md-toolbar id="header" hide-gt-md>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button nav-toggle" aria-label="Menu" ng-click="intent.toggleSidenav('links')">
+        <ng-md-icon icon="menu" style="fill: white" size="32"></ng-md-icon>
+      </md-button>
+      <span class="logo" flex>
+        <a ui-sref="home">
+          <img src="images/logo-icon.png" height="30px" height="auto">
+        </a>
+      </span>
+      <md-button class="md-icon-button nav-toggle" aria-label="My Account" ng-click="intent.toggleSidenav('account')">
+        <ng-md-icon icon="person" class="person" style="fill: white" size="28"></ng-md-icon>
+      </md-button>
+    </div>
+</md-toolbar>

@@ -1,0 +1,18 @@
+<md-sidenav md-component-id="account" layout-padding id="sidenav-account" class="md-sidenav-right md-whiteframe-z1">
+  <span ng-if="uiMe.id">
+    <md-content layout-padding layout="column" layout-gtr-sm="row" class="has-user">
+      <div class="user-avatar">
+        <img ng-src="{{ uiMe.avatarUrl }}" width="200">
+      </div>
+      <div class="user-info">
+        <h3 class="md-display-1">{{ uiMe.username }}</h3>
+        <p class="md-body-2">{{ uiMe.email }}</p>
+      </div>
+    </md-content>
+  </span>
+  <span ng-if="!uiMe.id" layout="column" class="no-user">
+    <md-button class="md-raised md-accent" ui-sref="signup">Sign Up</md-button>
+    <h3 class="md-display-1 text-center">- OR -</h3>
+    <md-button class="md-raised md-accent" ui-sref="login">Log In</md-button>
+  </span>
+</md-sidenav>

@@ -1,0 +1,8 @@
+<!-- Core dynamic content section -->
+<div id="content" layout="column">
+
+  <div ui-view ng-hide="uiMe.syncing.app"></div>
+
+  <md-progress-circular ng-show="uiMe.syncing.app" md-mode="indeterminate" class="md-accent syncing-app"></md-progress-circular>
+
+</div>

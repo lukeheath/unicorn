@@ -1,0 +1,6 @@
+<!-- Global errors (notification center) -->
+<div layout="column" id="notifications" class="md-whiteframe-z2" ng-cloak ng-class="{active: errorBus.length > 0}">
+  <div ng-repeat="error in errorBus" class="notification" flex layout-padding layout-margin>
+    <p class="md-body-1">{{error.message}}</p>
+  </div>
+</div>

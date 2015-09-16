@@ -86,17 +86,6 @@ function($scope, $rootScope, $state, $q, $mdSidenav, $mdTheming, uiMe, uiList, u
     closeSidenav: function(){
       $mdSidenav('links').close();
       $mdSidenav('account').close();
-    },
-
-    logout: function(){
-      $scope.intent.closeSidenav();
-      uiMe.logout()
-      .then(function onSuccess(){
-        $state.go('login');
-      })
-      .catch(function onError(err){
-        uiErrorBus.$handleError(err);
-      });
     }
 
   });

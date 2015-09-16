@@ -1,0 +1,40 @@
+<!-- Global Side Nav - Links -->
+<md-sidenav md-component-id="links" md-is-locked-open="$mdMedia('gt-md')" layout="column" layout-padding id="sidenav-links" class="md-sidenav-left md-whiteframe-z1">
+
+  <span class="logo" show-gt-md>
+    <a ui-sref="home">
+      <img src="images/logo-icon.png" height="30px" height="auto">
+    </a>
+  </span>
+
+  <md-button class="md-accent nav-link" ui-sref="home">About Unicorn</md-button>
+  <md-button class="md-accent nav-link" ui-sref="profile" ng-if="uiMe.id">Profile</md-button>
+  <md-button class="md-accent nav-link" ng-click="uiMe.logout()" ng-if="uiMe.id">Logout</md-button>
+  <md-button class="md-accent nav-link" ui-sref="login" ng-if="!uiMe.id">Login</md-button>
+  <md-button class="md-accent nav-link" ui-sref="signup" ng-if="!uiMe.id">Sign Up</md-button>
+
+  <md-divider></md-divider>
+
+  <div class="social" layout="row" layout-align="center">
+    <span flex>
+      <md-button class="md-fab md-mini" aria-label="Unicorn on Facebook">
+        <ng-md-icon icon="facebook" style="fill: white" size="22" alt="Facebook"></ng-md-icon>
+      </md-button>
+    </span>
+    <span flex>
+      <md-button class="md-fab md-mini" aria-label="Unicorn on Twitter">
+        <ng-md-icon icon="twitter" style="fill: white" size="22" alt="Twitter"></ng-md-icon>
+      </md-button>
+    </span>
+    <span flex>
+      <md-button class="md-fab md-mini" aria-label="Unicorn on Google Plus">
+        <ng-md-icon icon="google-plus" style="fill: white" size="22" alt="Google Plus"></ng-md-icon>
+      </md-button>
+    </span>
+    <span flex>
+      <md-button class="md-fab md-mini" aria-label="Unicorn on YouTube">
+        <ng-md-icon icon="play_arrow" style="fill: white" size="22" alt="YouTube"></ng-md-icon>
+      </md-button>
+    </span>
+  </div>
+</md-sidenav>

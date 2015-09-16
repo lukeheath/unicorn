@@ -57,7 +57,8 @@ function( Cloud, uiErrorBus ) {
 
       return Cloud.logout()
       .then(function whenServerRespond(data){
-      self.replace({});
+        self.replace({});
+        window.location.href = '/';
       });
     },
 

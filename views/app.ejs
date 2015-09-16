@@ -1,86 +1,21 @@
 <div ng-app="unicorn" ng-controller="AppCtrl" id="container" ng-cloak>
 
-  <!-- Global errors (notification center) -->
-  <div layout="column" id="notifications" class="md-whiteframe-z2" ng-cloak ng-class="{active: errorBus.length > 0}">
-    <div ng-repeat="error in errorBus" class="notification" flex layout-padding layout-margin>
-      <p class="md-body-1">{{error.message}}</p>
-    </div>
-  </div>
+  <!-- Notification Bus -->
+  <%- partial ('partials/notification-bus.ejs') %>
 
-  <md-toolbar id="header">
-    <div class="md-toolbar-tools">
-      <md-button class="md-icon-button nav-toggle" aria-label="Menu" ng-click="intent.toggleSidenav('links')">
-        <ng-md-icon icon="menu" style="fill: white" size="32"></ng-md-icon>
-      </md-button>
-      <span class="logo" flex>
-        <a ui-sref="home">
-          <img src="images/logo-icon.png" height="30px" height="auto">
-        </a>
-      </span>
-      <md-button class="md-icon-button nav-toggle" aria-label="My Account" ng-click="intent.toggleSidenav('account')">
-        <ng-md-icon icon="person" class="person" style="fill: white" size="28"></ng-md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
+  <!-- Header Toolbar -->
+  <%- partial ('partials/header.ejs') %>
 
-  <md-sidenav md-component-id="links" layout="column" layout-padding id="sidenav-links" class="md-sidenav-left md-whiteframe-z1">
-    <md-button class="md-accent nav-link" ui-sref="home">About Unicorn</md-button>
-    <md-button class="md-accent nav-link" ui-sref="profile" ng-if="uiMe.id">Profile</md-button>
-    <md-button class="md-accent nav-link" ng-click="intent.logout()" ng-if="uiMe.id">Logout</md-button>
-    <md-button class="md-accent nav-link" ui-sref="login" ng-if="!uiMe.id">Login</md-button>
-    <md-button class="md-accent nav-link" ui-sref="signup" ng-if="!uiMe.id">Sign Up</md-button>
+  <div layout="row" class="body-wrap" flex>
 
-    <md-divider></md-divider>
+    <!-- Sidenav - Links -->
+    <%- partial ('partials/sidenav-links.ejs') %>
 
-    <div class="social" layout="row" layout-align="center">
-      <span flex>
-        <md-button class="md-fab md-mini" aria-label="Unicorn on Facebook">
-          <ng-md-icon icon="facebook" style="fill: white" size="22" alt="Facebook"></ng-md-icon>
-        </md-button>
-      </span>
-      <span flex>
-        <md-button class="md-fab md-mini" aria-label="Unicorn on Twitter">
-          <ng-md-icon icon="twitter" style="fill: white" size="22" alt="Twitter"></ng-md-icon>
-        </md-button>
-      </span>
-      <span flex>
-        <md-button class="md-fab md-mini" aria-label="Unicorn on Google Plus">
-          <ng-md-icon icon="google-plus" style="fill: white" size="22" alt="Google Plus"></ng-md-icon>
-        </md-button>
-      </span>
-      <span flex>
-        <md-button class="md-fab md-mini" aria-label="Unicorn on YouTube">
-          <ng-md-icon icon="play_arrow" style="fill: white" size="22" alt="YouTube"></ng-md-icon>
-        </md-button>
-      </span>
-    </div>
-  </md-sidenav>
+    <!-- Core Dynamic Content -->
+    <%- partial('partials/content.ejs') %>
 
-  <md-sidenav md-component-id="account" layout-padding id="sidenav-account" class="md-sidenav-right md-whiteframe-z1">
-    <span ng-if="uiMe.id">
-      <md-content layout-padding layout="column" layout-gtr-sm="row" class="has-user">
-        <div class="user-avatar">
-          <img ng-src="{{ uiMe.avatarUrl }}" width="200">
-        </div>
-        <div class="user-info">
-          <h3 class="md-display-1">{{ uiMe.username }}</h3>
-          <p class="md-body-2">{{ uiMe.email }}</p>
-        </div>
-      </md-content>
-    </span>
-    <span ng-if="!uiMe.id" layout="column" class="no-user">
-      <md-button class="md-raised md-accent" ui-sref="signup">Sign Up</md-button>
-      <h3 class="md-display-1 text-center">- OR -</h3>
-      <md-button class="md-raised md-accent" ui-sref="login">Log In</md-button>
-    </span>
-  </md-sidenav>
-
-  <!-- Core dynamic content section -->
-  <div id="content" layout="column">
-
-    <div ui-view ng-hide="uiMe.syncing.app"></div>
-
-    <md-progress-circular ng-show="uiMe.syncing.app" md-mode="indeterminate" class="md-accent syncing-app"></md-progress-circular>
+    <!-- Sidenav - Accounts -->
+    <%- partial ('partials/sidenav-account.ejs') %>
 
   </div>
 

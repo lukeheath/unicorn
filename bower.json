@@ -23,12 +23,12 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.5",
-    "angular-animate": "~1.4.5",
-    "angular-aria": "~1.4.5",
-    "angular-material": "~0.10.1",
-    "angular-material-icons": "~0.5.0",
-    "angular-touch": "~1.4.5",
+    "angular": "~1.4.6",
+    "angular-animate": "~1.4.6",
+    "angular-aria": "~1.4.6",
+    "angular-material": "~0.11.0",
+    "angular-material-icons": "~0.6.0",
+    "angular-touch": "~1.4.6",
     "angular-ui-router": "~0.2.15",
     "lodash": "~3.10.1",
     "svg-morpheus": "~0.1.8"
