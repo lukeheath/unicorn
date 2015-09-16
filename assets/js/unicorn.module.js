@@ -13,10 +13,10 @@ var dependencies = [
 ];
 
 /**
- * <%=unicorn.name%>
+ * Unicorn
  *
  * @class        {angular.module}
- * @module       <%=unicorn.name%>
+ * @module       unicorn
  * @type         {Function}
  * @description  An angular module for a web UI.
  */
