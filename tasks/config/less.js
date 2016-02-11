@@ -14,6 +14,9 @@ module.exports = function(grunt) {
 
 	grunt.config.set('less', {
 		dev: {
+			options: {
+				plugins: [require('less-plugin-glob')]
+			},
 			files: [{
 				expand: true,
 				cwd: 'assets/styles/',
