@@ -1,4 +1,4 @@
-<md-content layout-padding layout-margin id="signup" class="content-wrap simple-form">
+<div id="signup">
 
 	<span ng-if="!uiMe.integration.id">
 		<h1 class='md-display-2'>Sign Up</h1>
@@ -9,17 +9,14 @@
 		<p class="md-body-1">You have successfully connected to Facebook. Please complete the information below to create your account.</p>
 	</span>
 
-	<form name="signupForm" ng-submit="intent.signup()">
-		<md-input-container md-no-float>
-			<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+	<form name="signupForm" ng-submit="intent.signup()" class="simple-form">
+		<md-input-container class="md-block">
 			<input ng-model="user.username" type="text" placeholder="Username" ng-required="true">
 		</md-input-container>
-		<md-input-container md-no-float>
-			<ng-md-icon icon="email" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+		<md-input-container class="md-block">
 			<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
 		</md-input-container>
-		<md-input-container md-no-float>
-			<ng-md-icon icon="lock" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+		<md-input-container class="md-block">
 			<input ng-model="user.password" type="password" placeholder="Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
 			<p class="md-body-1 input-desc">minimum 6 characters, alphanumeric</p>
 		</md-input-container>
@@ -39,4 +36,4 @@
 		<ng-md-icon icon="facebook" style="fill: {{ mdColors.accent }}" size="22"></ng-md-icon> Sign up with Facebook
 	</md-button>
 
-</md-content>
+</div>

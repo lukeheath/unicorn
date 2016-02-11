@@ -4,7 +4,6 @@
 
 var dependencies = [
   'ui.router',
-  'ngTouch',
   'ngAnimate',
   'ngMaterial',
   'ngMdIcons',

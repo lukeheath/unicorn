@@ -1,10 +1,9 @@
-<md-content layout-padding layout-margin id="login" class="simple-form" ng-cloak>
+<div id="forgot">
 
-	<h1 class='md-display-1'>Forgot Password</h1>
+	<h1 class="md-display-2">Forgot Password</h1>
 
-	<form name="forgotForm" ng-submit="intent.recoverPassword();">
-		<md-input-container md-no-float>
-			<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+	<form name="forgotForm" class="simple-form" ng-submit="intent.recoverPassword();">
+		<md-input-container class="md-block">
 			<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
 		</md-input-container>
 
@@ -23,4 +22,4 @@
 
 	</form>
 
-</md-content>
+</div>

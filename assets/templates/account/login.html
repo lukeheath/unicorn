@@ -1,19 +1,13 @@
-<md-content layout-padding layout-margin id="login" class="content-wrap" ng-cloak>
+<div id="login">
 
 	<h1 class="md-display-2">Log In</h1>
 
-	<div class="simple-form">
-
-		<form name="loginForm" ng-submit="intent.login();">
-			<md-input-container md-no-float>
-
-				<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
-
-				<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
-				<a class="md-body-1 input-link" ui-sref="signup" tabindex="-1">Sign Up</a>
+		<form name="loginForm" class="simple-form" ng-submit="intent.login();">
+			<md-input-container class="md-block" flex>
+				<label>Email</label>
+				<input ng-model="user.email" type="email" ng-required="true">
 			</md-input-container>
-			<md-input-container md-no-float>
-				<ng-md-icon icon="lock" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+			<md-input-container class="md-block" flex>
 				<input ng-model="user.password" type="password" placeholder="Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
 				<a class="md-body-1 input-link" ui-sref="forgot" tabindex="-1">Forgot Password?</a>
 			</md-input-container>
@@ -29,10 +23,8 @@
 
 		</form>
 
-	</div>
-
 	<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()">
 		<ng-md-icon icon="facebook" style="fill: {{ mdColors.accent }}" size="22"></ng-md-icon> Log in with Facebook
 	</md-button>
 
-</md-content>
+</div>
