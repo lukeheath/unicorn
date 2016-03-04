@@ -11,22 +11,13 @@
  */
 
 angular.module('unicorn')
-.controller('LoginCtrl', [
-        '$scope', '$rootScope', '$state', '$timeout', 'uiMe', 'uiList', 'uiErrorBus',
-function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
+.controller('LoginCtrl',
+function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus, uiDirector) {
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // When the application is initially rendered
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  //
 
-  $rootScope.appReady.then(function onReady(){
-    // If user is logged in, 
-    // send to profile
-    if(uiMe.id){
-      $state.go('profile');
-    }
-  });
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // DOM Events
@@ -38,7 +29,7 @@ function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
       uiMe.syncing.form = true;
       uiMe.login($scope.user)
       .then(function onLogin(){
-        $state.go('profile');
+        $state.go('app.profile');
       })
       .catch(function onError(err){
         if(err.status >= 400 && err.status < 500){
@@ -55,4 +46,4 @@ function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
 
   });
 
-}]);
+});

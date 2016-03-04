@@ -13,36 +13,128 @@ angular.module('unicorn')
     * Configure state machine
     *******************************/
 
-    .state('home', {
+    /*
+    Public
+    - Public access, all users
+    */
+
+    .state('public', {
+      abstract: true,
+      resolve: {
+        appReady: function(uiDirector){
+          return uiDirector.appReady.promise;
+        }
+      },
+      onEnter: function(uiMe){
+        // Update syncing state
+        uiMe.syncing.app = false;
+      }
+    })
+    .state('public.home', {
       url: '/',
-      templateUrl: 'templates/brochure/home.html',
-      controller: 'HomeCtrl'
+      views: {
+        '@': {
+          templateUrl: 'templates/brochure/home.html',
+          controller: 'HomeCtrl'
+        }
+      }
     })
-    .state('login', {
+
+    /*
+    Account states
+    (No auth required)
+    */
+
+    .state('account', {
+      abstract: true,
+      resolve: {
+        appReady: function(uiDirector){
+          return uiDirector.appReady.promise;
+        }
+      },
+      onEnter: function($state, uiMe){
+
+        // Update syncing state
+        uiMe.syncing.app = false;
+
+        // If user is logged in,
+        // redriect to profile
+        if(uiMe.id){
+          $state.go('app.profile');
+        }
+        
+      }
+    })
+    .state('account.login', {
       url: '/login',
-      templateUrl: 'templates/account/login.html',
-      controller: 'LoginCtrl'
+      views: {
+        '@': {
+          templateUrl: 'templates/account/login.html',
+          controller: 'LoginCtrl'
+        }
+      }
     })
-    .state('forgot', {
+    .state('account.forgot', {
       url: '/forgot',
-      templateUrl: 'templates/account/forgot.html',
-      controller: 'ForgotCtrl'
+      views: {
+        '@': {
+          templateUrl: 'templates/account/forgot.html',
+          controller: 'ForgotCtrl'
+        }
+      }
     })
-    .state('reset', {
+    .state('account.reset', {
       url: '/reset/:authToken',
-      templateUrl: 'templates/account/reset.html',
-      controller: 'ResetCtrl'
+      views: {
+        '@': {
+          templateUrl: 'templates/account/reset.html',
+          controller: 'ResetCtrl'
+        }
+      }
     })
-    .state('signup', {
+    .state('account.signup', {
       url: '/signup',
-      templateUrl: 'templates/account/signup.html',
-      controller: 'SignupCtrl'
+      views: {
+        '@': {
+          templateUrl: 'templates/account/signup.html',
+          controller: 'SignupCtrl'   
+        }
+      }
     })
-    .state('profile', {
+
+    /*
+    Application states
+    (Auth required)
+    */
+    .state('app', {
+      abstract: true,
+      resolve: {
+        appReady: function(uiDirector){
+          return uiDirector.appReady.promise;
+        }
+      },
+      onEnter: function($state, uiMe){
+
+        // Update syncing state
+        uiMe.syncing.app = false;
+
+        // If user is not logged in,
+        // redriect to login
+        if(!uiMe.id){
+          $state.go('account.login');
+        }
+        
+      }
+    })
+    .state('app.profile', {
       url: '/profile',
-      templateUrl: 'templates/account/profile.html',
-      controller: 'ProfileCtrl'
-    });
+      views: {
+        '@': {
+          templateUrl: 'templates/account/profile.html',
+          controller: 'ProfileCtrl'
+        }
+      }
+    })
 
     /******************************
     * Standard url routing

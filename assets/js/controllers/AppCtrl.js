@@ -11,14 +11,19 @@
  */
 
 angular.module('unicorn')
-.controller('AppCtrl', [
-        '$scope', '$rootScope', '$state', '$q', '$mdSidenav', '$mdTheming', 'uiMe', 'uiList', 'uiErrorBus',
-function($scope, $rootScope, $state, $q, $mdSidenav, $mdTheming, uiMe, uiList, uiErrorBus) {
+.controller('AppCtrl',
+function($scope, $rootScope, $state, $q, $mdSidenav, $mdTheming, uiDirector, uiMe, uiList, uiErrorBus) {
 
-  window.uiMe = uiMe;
+  // Set objects to window for easy debugging
+  // DEV ONLY
+  window.ui = {
+    theme: $mdTheming,
+    me: uiMe,
+    director: uiDirector
+  };
+
+  // Set uiMe to scope
   $scope.uiMe = uiMe;
-
-  window.theme = $mdTheming;
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // When the application is initially rendered
@@ -30,36 +35,18 @@ function($scope, $rootScope, $state, $q, $mdSidenav, $mdTheming, uiMe, uiList, u
     accent: '#EC407A'
   };
 
-  // Create promise for app ready state
-  var appReady = $q.defer();
-  $rootScope.appReady = appReady.promise;
-
-  $rootScope.appReady.then(function onReady(){
-    
-  })
-  .catch(function onError(err){
-    
-  })
-  .finally(function eitherWay(){
-    uiMe.syncing.app = false;
-  });
-
-  // Fetch current user data from server
+  // Get current user
   uiMe.fetch()
   .then(function loggedIn(){
 
-    // Fetch widgets from server
-    // uiList.fetch({
-    //   belongingTo: uiMe.id
-    // });
+    // Attempt to initialize app
+    uiDirector.init();
 
   }).catch(function notLoggedIn(err){
 
-    //appReady.reject(err);
+    // Resolve loading state without initializing app
+    uiDirector.appReady.resolve();
 
-  })
-  .finally(function eitherWay(){
-    appReady.resolve();
   });
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
@@ -90,4 +77,4 @@ function($scope, $rootScope, $state, $q, $mdSidenav, $mdTheming, uiMe, uiList, u
 
   });
 
-}]);
+});

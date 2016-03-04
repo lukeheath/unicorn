@@ -11,21 +11,12 @@
  */
 
 angular.module('unicorn')
-.controller('SignupCtrl', [
-        '$window', '$scope', '$rootScope', '$state', '$location', 'uiMe', 'uiList', 'uiErrorBus', '_',
+.controller('SignupCtrl',
 function($window, $scope, $rootScope, $state, $location, uiMe , uiList, uiErrorBus, _) {
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // When the application is initially rendered
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-
-  $rootScope.appReady.then(function onReady(){
-    // If user is logged in, 
-    // send to profile
-    if(uiMe.id){
-      $state.go('profile');
-    }
-  });
   
   // If this is an integration signup, 
   // get the integration record
@@ -46,13 +37,12 @@ function($window, $scope, $rootScope, $state, $location, uiMe , uiList, uiErrorB
   $scope.intent = angular.extend($scope.intent||{}, {
 
     signup: function(){
-      console.log("Click signup!");
       uiMe.syncing.form = true;
       uiMe.signup($scope.user)
       .then(function onLogin(){
         uiMe.fetch()
         .then(function onSuccess(){
-          $state.go('profile');
+          $state.go('app.profile');
         });
       })
       .catch(function onError(err){
@@ -80,4 +70,4 @@ function($window, $scope, $rootScope, $state, $location, uiMe , uiList, uiErrorB
 
   });
 
-}]);
+});

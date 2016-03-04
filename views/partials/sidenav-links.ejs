@@ -7,11 +7,11 @@
     </a>
   </span>
 
-  <md-button class="md-accent nav-link" ui-sref="home">About Unicorn</md-button>
-  <md-button class="md-accent nav-link" ui-sref="profile" ng-if="uiMe.id">Profile</md-button>
+  <md-button class="md-accent nav-link" ui-sref="public.home">About Unicorn</md-button>
+  <md-button class="md-accent nav-link" ui-sref="app.profile" ng-if="uiMe.id">Profile</md-button>
   <md-button class="md-accent nav-link" ng-click="uiMe.logout()" ng-if="uiMe.id">Logout</md-button>
-  <md-button class="md-accent nav-link" ui-sref="login" ng-if="!uiMe.id">Login</md-button>
-  <md-button class="md-accent nav-link" ui-sref="signup" ng-if="!uiMe.id">Sign Up</md-button>
+  <md-button class="md-accent nav-link" ui-sref="account.login" ng-if="!uiMe.id">Login</md-button>
+  <md-button class="md-accent nav-link" ui-sref="account.signup" ng-if="!uiMe.id">Sign Up</md-button>
 
   <md-divider></md-divider>
 

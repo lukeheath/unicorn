@@ -11,8 +11,7 @@
  */
 
 angular.module('unicorn')
-.controller('ResetCtrl', [
-        '$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'uiMe', 'uiList', 'uiErrorBus',
+.controller('ResetCtrl',
 function($scope, $rootScope, $state, $stateParams, $timeout, uiMe , uiList, uiErrorBus) {
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
@@ -22,21 +21,11 @@ function($scope, $rootScope, $state, $stateParams, $timeout, uiMe , uiList, uiEr
   // Get the auth token
   var authToken = $stateParams.authToken;
 
-  $rootScope.appReady.then(function onReady(){
-    
-    // If user is logged in, 
-    // send to profile
-    if(uiMe.id){
-      $state.go('profile');
-    };
-
-    // If not auth token, 
+  // If not auth token, 
     // go home
     if(!authToken){
-      $state.go('home');
+      $state.go('public.home');
     }
-    
-  });
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // DOM Events
@@ -54,7 +43,7 @@ function($scope, $rootScope, $state, $stateParams, $timeout, uiMe , uiList, uiEr
         .then(function onAuth(){
           uiMe.fetch()
           .then(function onFetched(){
-            $state.go('profile');
+            $state.go('app.profile');
           });
         })
         .catch(function onError(err){
@@ -75,4 +64,4 @@ function($scope, $rootScope, $state, $stateParams, $timeout, uiMe , uiList, uiEr
 
   });
 
-}]);
+});

@@ -19,18 +19,6 @@ function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // When the application is initially rendered
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  //
-
-  // When app is ready,
-  // confirm user is logged in.
-  $rootScope.appReady.then(function onReady(){
-    if(uiMe.id){
-      $scope.uiMe = uiMe;
-    }
-    else{
-      $state.go('login');
-    }
-  });
   
   // Set profile edit status on scope
   $scope.editProfile = false;

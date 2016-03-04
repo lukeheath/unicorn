@@ -18,15 +18,8 @@ function($scope, $rootScope, $state, $timeout, uiMe , uiList, uiErrorBus) {
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // When the application is initially rendered
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  //
 
-  $rootScope.appReady.then(function onReady(){
-    // If user is logged in, 
-    // send to profile
-    if(uiMe.id){
-      $state.go('profile');
-    }
-  });
+
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // DOM Events
