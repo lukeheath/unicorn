@@ -1,8 +1,8 @@
-<md-content layout-padding layout-margin id="login" class="simple-form" ng-cloak>
+<div id="reset" ng-cloak>
 
-	<h1 class='md-display-1'>Reset Password</h1>
+	<h1 class='md-display-1 title'>Reset Password</h1>
 
-	<form name="resetform" ng-submit="intent.resetPassword();">
+	<form name="resetform" ng-submit="intent.resetPassword();" class="simple-form">
 		<md-input-container md-no-float>
 			<md-icon class="icon" md-font-icon="icon-lock" alt="User"></md-icon>
 			<input ng-model="user.password" type="password" placeholder="Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
@@ -13,11 +13,11 @@
 			<md-button type="submit" class="md-theme-default md-raised md-primary large" ng-disabled="resetForm.$invalid">
 				<span ng-hide="uiMe.syncing.form">Reset Password</span>
 				<span ng-show="uiMe.syncing.form" class="spinner">
-					<md-progress-circular class="md-accent md-hue-1 syncing-button active" md-mode="indeterminate" md-diameter="50" ></md-progress-circular>
+					<md-progress-circular class="md-accent md-hue-1 syncing-button active" md-mode="indeterminate" md-diameter="25" ></md-progress-circular>
 				</span>
 			</md-button>
 		</div>
 
 	</form>
 
-</md-content>
+</div>

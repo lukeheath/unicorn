@@ -1,57 +1,52 @@
-<md-content layout-padding layout-margin id="profile" class="simple-form" ng-cloak>
+<div id="profile">
 
-	<h1 class='md-display-2'>Profile</h1>
+	<h1 class='md-display-2 title'>Profile</h1>
 
-	<md-content layout-padding layout="column" layout-gtr-sm="row" ng-show="!editProfile">
+	<div layout="column" layout-gtr-sm="row" layout-align="center center" layout-padding>
 		<div>
 			<img ng-src="{{ uiMe.avatarUrl }}" width="200">
 		</div>
-		<div class="user-info">
+		<div class="user-info" layout-align="center" ng-hide="editProfile">
 			<h3 class="md-display-1">{{ uiMe.username }}</h3>
 			<p class="md-body-2">{{ uiMe.email }}</p>
 		</div>
-	</md-content>
+	</div>
 
-	<md-content layout-padding layout="column" layout-gtr-sm="row" ng-show="editProfile">
-		<div>
-			<img ng-src="{{ uiMe.avatarUrl }}" width="200">
-		</div>
-		<div>
-			<form name="profileForm" class="profile-form" ng-submit="intent.updateProfile();">
-				<md-input-container md-no-float>
-					<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
-					<input ng-model="user.username" type="text" placeholder="Username" ng-required="true">
-				</md-input-container>
-				<md-input-container md-no-float>
-					<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
-					<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
-				</md-input-container>
-				<md-input-container md-no-float>
-					<ng-md-icon icon="lock" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
-					<input ng-model="user.currentPassword" type="password" placeholder="Current Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
-					<p class="md-body-1 input-desc">confirm current password to submit changes</p>
-				</md-input-container>
-				<md-input-container md-no-float>
-					<ng-md-icon icon="lock" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
-					<input ng-model="user.newPassword" type="password" placeholder="New Password" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
-				</md-input-container>
-				<div class="button-wrap">
-					<md-button type="submit" class="md-theme-default md-raised md-primary large text-center" ng-disabled="profileForm.$invalid">
-						<span ng-hide="uiMe.syncing.form">Update</span>
-						<md-progress-circular class="md-accent md-hue-3 syncing-button active" md-mode="indeterminate" md-diameter="25" ng-show="uiMe.syncing.form"></md-progress-circular>
-					</md-button>
-				</div>
+	<div layout="column" layout-gtr-sm="row" layout-align="center center" layout-padding ng-show="editProfile">
+		<form name="profileForm" ng-submit="intent.updateProfile();" class="simple-form">
+			<md-input-container md-no-float>
+				<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+				<input ng-model="user.username" type="text" placeholder="Username" ng-required="true">
+			</md-input-container>
+			<md-input-container md-no-float>
+				<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+				<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+			</md-input-container>
+			<md-input-container md-no-float>
+				<ng-md-icon icon="lock" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+				<input ng-model="user.currentPassword" type="password" placeholder="Current Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
+				<p class="md-body-1 input-desc">confirm current password to submit changes</p>
+			</md-input-container>
+			<md-input-container md-no-float>
+				<ng-md-icon icon="lock" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+				<input ng-model="user.newPassword" type="password" placeholder="New Password" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
+			</md-input-container>
+			<div class="button-wrap">
+				<md-button type="submit" class="md-theme-default md-raised md-primary large text-center" ng-disabled="profileForm.$invalid">
+					<span ng-hide="uiMe.syncing.form">Update</span>
+					<md-progress-circular class="md-accent md-hue-3 syncing-button active" md-mode="indeterminate" md-diameter="25" ng-show="uiMe.syncing.form"></md-progress-circular>
+				</md-button>
+			</div>
+		</form>
+	</div>
 
-			</form>
-		</div>
-	</md-content>
+	<div layout="column" layout-align="center center">
+		<md-button class="md-accent md-hue-1" ng-click="intent.editProfile()" ng-show="!editProfile">
+			Edit Profile
+		</md-button>
+		<md-button class="md-accent md-hue-1" ng-click="editProfile = false" ng-show="editProfile">
+			Cancel
+		</md-button>
+	</div>
 
-	<md-button class="md-accent md-hue-1" ng-click="intent.editProfile()" ng-show="!editProfile">
-		Edit Profile
-	</md-button>
-
-	<md-button class="md-accent md-hue-1" ng-click="editProfile = false" ng-show="editProfile">
-		Cancel
-	</md-button>
-
-</md-content>
+</div>

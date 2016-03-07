@@ -1,6 +1,6 @@
 <div id="login">
 
-	<h1 class="md-display-2">Log In</h1>
+	<h1 class="md-display-2 title">Log In</h1>
 
 		<form name="loginForm" class="simple-form" ng-submit="intent.login();">
 			<md-input-container class="md-block" flex>
@@ -8,7 +8,8 @@
 				<input ng-model="user.email" type="email" ng-required="true">
 			</md-input-container>
 			<md-input-container class="md-block" flex>
-				<input ng-model="user.password" type="password" placeholder="Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
+				<label>Password</label>
+				<input ng-model="user.password" type="password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
 				<a class="md-body-1 input-link" ui-sref="account.forgot" tabindex="-1">Forgot Password?</a>
 			</md-input-container>
 
@@ -16,15 +17,17 @@
 				<md-button type="submit" class="md-theme-default md-raised md-primary large" ng-disabled="loginForm.$invalid">
 					<span ng-hide="uiMe.syncing.form">Log In</span>
 					<span ng-show="uiMe.syncing.form" class="spinner">
-						<md-progress-circular class="md-accent md-hue-1 syncing-button active" md-mode="indeterminate" md-diameter="50" ></md-progress-circular>
+						<md-progress-circular class="md-accent md-hue-1 syncing-button active" md-mode="indeterminate" md-diameter="25" ></md-progress-circular>
 					</span>
 				</md-button>
 			</div>
 
 		</form>
 
-	<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()">
-		<ng-md-icon icon="facebook" style="fill: {{ mdColors.accent }}" size="22"></ng-md-icon> Log in with Facebook
-	</md-button>
+	<div layout="row" layout-align="center" layout-padding layout-margin>
+		<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()">
+			<ng-md-icon icon="facebook" style="fill: {{ mdColors.accent }}" size="22"></ng-md-icon> Log in with Facebook
+		</md-button>
+	</div>
 
 </div>

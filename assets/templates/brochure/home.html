@@ -1,12 +1,12 @@
-<md-content id="home">
+<div id="home">
 
-	<h1 class="md-display-2" hide show-gt-sm>Unicorn</h1>
+	<h1 class="md-display-2 title" hide show-gt-sm>Unicorn</h1>
 
-	<md-content layout="row" layout-sm="column" layout-padding>
+	<div layout="row" layout-sm="column" layout-padding>
 
-		<div flex flex-gt-md="40" class="welcome">
+		<div layout="column" flex flex-gt-md="40" class="welcome">
 			<img src="/images/sparklehorse.gif">
-			<p class="md-body-1"><strong>{{ uiMe.username || 'Hooray' }}!</strong> You've found Unicorn, a Treeline / Angular seed.</p>
+			<p class="md-body-1 text-center"><strong>{{ uiMe.username || 'Hooray' }}!</strong> You've found Unicorn, a Treeline / Angular seed.</p>
 		</div>
 
 		<div flex flex-gt-md="60" class="why">
@@ -52,6 +52,6 @@
 
 		</div>
 
-	</md-content>
+	</div>
 
-</md-content>
+</div>

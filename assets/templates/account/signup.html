@@ -1,7 +1,7 @@
 <div id="signup">
 
 	<span ng-if="!uiMe.integration.id">
-		<h1 class='md-display-2'>Sign Up</h1>
+		<h1 class='md-display-2 title'>Sign Up</h1>
 	</span>
 
 	<span ng-if="uiMe.integration.id">
@@ -11,13 +11,16 @@
 
 	<form name="signupForm" ng-submit="intent.signup()" class="simple-form">
 		<md-input-container class="md-block">
-			<input ng-model="user.username" type="text" placeholder="Username" ng-required="true">
+			<label>Username</label>
+			<input ng-model="user.username" type="text" ng-required="true">
 		</md-input-container>
 		<md-input-container class="md-block">
-			<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+			<label>Email</label>
+			<input ng-model="user.email" type="email" ng-required="true">
 		</md-input-container>
 		<md-input-container class="md-block">
-			<input ng-model="user.password" type="password" placeholder="Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
+			<label>Password</label>
+			<input ng-model="user.password" type="password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
 			<p class="md-body-1 input-desc">minimum 6 characters, alphanumeric</p>
 		</md-input-container>
 
@@ -25,15 +28,17 @@
 			<md-button type="submit" class="md-raised md-primary large" ng-disabled="signupForm.$invalid" >
 				<span ng-hide="uiMe.syncing.form">Sign Up</span>
 				<span ng-show="uiMe.syncing.form" class="spinner">
-					<md-progress-circular class="md-accent md-hue-1 syncing-button active" md-mode="indeterminate" md-diameter="50" ></md-progress-circular>
+					<md-progress-circular class="md-accent md-hue-1 syncing-button active" md-mode="indeterminate" md-diameter="25" ></md-progress-circular>
 				</span>
 			</md-button>
 		</div>
 
 	</form>
 
-	<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()" ng-hide="uiMe.integration.id">
-		<ng-md-icon icon="facebook" style="fill: {{ mdColors.accent }}" size="22"></ng-md-icon> Sign up with Facebook
-	</md-button>
+	<div layout="row" layout-align="center" layout-padding layout-margin>
+		<md-button class="md-accent md-hue-1" ng-click="uiMe.facebookAuth()" ng-hide="uiMe.integration.id">
+			<ng-md-icon icon="facebook" style="fill: {{ mdColors.accent }}" size="22"></ng-md-icon> Sign up with Facebook
+		</md-button>
+	</div>
 
 </div>

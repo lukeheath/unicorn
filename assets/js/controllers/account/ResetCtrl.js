@@ -22,10 +22,10 @@ function($scope, $rootScope, $state, $stateParams, $timeout, uiMe , uiList, uiEr
   var authToken = $stateParams.authToken;
 
   // If not auth token, 
-    // go home
-    if(!authToken){
-      $state.go('public.home');
-    }
+  // go home
+  if(!authToken){
+    $state.go('public.home');
+  }
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // DOM Events
