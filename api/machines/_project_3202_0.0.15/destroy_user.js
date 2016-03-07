@@ -11,13 +11,13 @@ module.exports = {
       "friendlyName": "then",
       "example": [{
         "avatarUrl": "http://gravatar.com/bilbo",
-        "username": "bilbobaggins",
+        "username": "bilbo",
         "authToken": "abc123abc123abc123",
-        "password": "abc123",
         "email": "bilbo@baggins.com",
+        "password": "abc123",
         "id": 123,
-        "createdAt": "2015-05-12T15:25:33.860Z",
-        "updatedAt": "2015-05-12T15:25:33.860Z"
+        "createdAt": "2016-03-07T22:24:05.187Z",
+        "updatedAt": "2016-03-07T22:24:05.187Z"
       }]
     },
     "error": {

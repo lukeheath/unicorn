@@ -1,5 +1,123 @@
 var Machine = require("machine");
 module.exports = {
+    'facebook': function(req, res) {
+        Machine.build({
+            inputs: {},
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // Get Facebook login URL
+                sails.machines['c8d25931-bf1e-4997-be03-18e7c605d85a_1.1.0'].getLoginUrl({
+                    "appId": "1606999912894581",
+                    "callbackUrl": "http://localhost:1337/integration/",
+                    "permissions": ["user_friends", "email", "public_profile"]
+                }).exec({
+                    "error": function(getFacebookLoginURL) {
+                        return exits.error({
+                            data: getFacebookLoginURL,
+                            status: 500
+                        });
+
+                    },
+                    "success": function(getFacebookLoginURL) {
+                        return exits.respond({
+                            data: getFacebookLoginURL,
+                            action: "respond_with_value_and_status",
+                            status: 200
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
+    'get_find': function(req, res) {
+        Machine.build({
+            inputs: {},
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // List (Blueprint) User
+                sails.machines['_project_3202_0.0.15'].blueprintFind_user({}).setEnvironment({
+                    req: req,
+                    sails: sails
+                }).exec({
+                    "success": function(listBlueprintUser) {
+                        return exits.respond({
+                            data: listBlueprintUser,
+                            action: "respond_with_result_and_status",
+                            status: 200
+                        });
+
+                    },
+                    "error": function(listBlueprintUser) {
+                        return exits.error({
+                            data: listBlueprintUser,
+                            status: 500
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
+    'get_$id': function(req, res) {
+        Machine.build({
+            inputs: {
+                "id": {
+                    "example": "abc123",
+                    "required": true
+                }
+            },
+            exits: {
+                respond: {}
+            },
+            fn: function(inputs, exits) {
+                // Find One User
+                sails.machines['_project_3202_0.0.15'].findOne_user({
+                    "criteria": {
+                        id: inputs.id
+                    }
+                }).setEnvironment({
+                    sails: sails
+                }).exec({
+                    "success": function(findOneUser) {
+                        return exits.respond({
+                            data: findOneUser,
+                            action: "respond_with_result_and_status",
+                            status: 200
+                        });
+
+                    },
+                    "error": function(findOneUser) {
+                        return exits.error({
+                            data: findOneUser,
+                            status: 500
+                        });
+
+                    },
+                    "notFound": function(findOneUser) {
+                        return exits.error({
+                            data: findOneUser,
+                            status: 500
+                        });
+
+                    }
+                });
+            }
+        }).configure(req.params.all(), {
+            respond: res.response,
+            error: res.negotiate
+        }).exec();
+    },
     'post_create': function(req, res) {
         Machine.build({
             inputs: {
@@ -190,89 +308,6 @@ module.exports = {
             error: res.negotiate
         }).exec();
     },
-    'get_find': function(req, res) {
-        Machine.build({
-            inputs: {},
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // List (Blueprint) User
-                sails.machines['_project_3202_0.0.15'].blueprintFind_user({}).setEnvironment({
-                    req: req,
-                    sails: sails
-                }).exec({
-                    "success": function(listBlueprintUser) {
-                        return exits.respond({
-                            data: listBlueprintUser,
-                            action: "respond_with_result_and_status",
-                            status: 200
-                        });
-
-                    },
-                    "error": function(listBlueprintUser) {
-                        return exits.error({
-                            data: listBlueprintUser,
-                            status: 500
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
-    'get_$id': function(req, res) {
-        Machine.build({
-            inputs: {
-                "id": {
-                    "example": "abc123",
-                    "required": true
-                }
-            },
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // Find One User
-                sails.machines['_project_3202_0.0.15'].findOne_user({
-                    "criteria": {
-                        id: inputs.id
-                    }
-                }).setEnvironment({
-                    sails: sails
-                }).exec({
-                    "success": function(findOneUser) {
-                        return exits.respond({
-                            data: findOneUser,
-                            action: "respond_with_result_and_status",
-                            status: 200
-                        });
-
-                    },
-                    "error": function(findOneUser) {
-                        return exits.error({
-                            data: findOneUser,
-                            status: 500
-                        });
-
-                    },
-                    "notFound": function(findOneUser) {
-                        return exits.error({
-                            data: findOneUser,
-                            status: 500
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
     'delete_$id': function(req, res) {
         Machine.build({
             inputs: {
@@ -305,41 +340,6 @@ module.exports = {
                         return exits.error({
                             data: destroyUser,
                             status: 500
-                        });
-
-                    }
-                });
-            }
-        }).configure(req.params.all(), {
-            respond: res.response,
-            error: res.negotiate
-        }).exec();
-    },
-    'facebook': function(req, res) {
-        Machine.build({
-            inputs: {},
-            exits: {
-                respond: {}
-            },
-            fn: function(inputs, exits) {
-                // Get Facebook login URL
-                sails.machines['c8d25931-bf1e-4997-be03-18e7c605d85a_1.1.0'].getLoginUrl({
-                    "appId": "1606999912894581",
-                    "callbackUrl": "http://localhost:1337/integration/",
-                    "permissions": ["user_friends", "email", "public_profile"]
-                }).exec({
-                    "error": function(getFacebookLoginURL) {
-                        return exits.error({
-                            data: getFacebookLoginURL,
-                            status: 500
-                        });
-
-                    },
-                    "success": function(getFacebookLoginURL) {
-                        return exits.respond({
-                            data: getFacebookLoginURL,
-                            action: "respond_with_value_and_status",
-                            status: 200
                         });
 
                     }

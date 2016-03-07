@@ -5,21 +5,21 @@
     "machineVersions": {
       "create_integration": "0.0.24",
       "create_test": "0.0.3",
-      "create_user": "0.0.13",
+      "create_user": "0.0.6",
       "destroy_integration": "0.0.24",
       "destroy_test": "0.0.3",
-      "destroy_user": "0.0.13",
+      "destroy_user": "0.0.15",
       "findOne_integration": "0.0.24",
       "findOne_test": "0.0.3",
-      "findOne_user": "0.0.13",
+      "findOne_user": "0.0.15",
       "blueprintFind_user": "0.0.4",
       "find_integration": "0.0.24",
       "find_test": "0.0.3",
-      "find_user": "0.0.13",
+      "find_user": "0.0.15",
       "ModifyModel": "0.0.11",
       "update_integration": "0.0.24",
       "update_test": "0.0.3",
-      "update_user": "0.0.13"
+      "update_user": "0.0.15"
     }
   }
 }
