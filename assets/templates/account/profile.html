@@ -15,21 +15,21 @@
 	<div layout="column" layout-gtr-sm="row" layout-align="center center" layout-padding ng-show="editProfile">
 		<form name="profileForm" ng-submit="intent.updateProfile();" class="simple-form">
 			<md-input-container class="md-block" flex>
-				<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
-				<input ng-model="user.username" type="text" placeholder="Username" ng-required="true">
+				<label>Username</label>
+				<input ng-model="user.username" type="text" ng-required="true">
 			</md-input-container>
 			<md-input-container class="md-block" flex>
-				<ng-md-icon icon="person" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
+				<label>Email</label>
 				<input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
 			</md-input-container>
 			<md-input-container class="md-block" flex>
-				<ng-md-icon icon="lock" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
-				<input ng-model="user.currentPassword" type="password" placeholder="Current Password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
+				<label>Current Password</label>
+				<input ng-model="user.currentPassword" type="password" ng-required="true" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
 				<p class="md-body-1 input-desc">confirm current password to submit changes</p>
 			</md-input-container>
 			<md-input-container class="md-block" flex>
-				<ng-md-icon icon="lock" style="fill: {{ mdColors.accent }}" size="26"></ng-md-icon>
-				<input ng-model="user.newPassword" type="password" placeholder="New Password" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
+				<label>New Password</label>
+				<input ng-model="user.newPassword" type="password" ng-minlength="6" ng-pattern="/^.*(?=.*\d)(?=.*[a-zA-Z]).*$/">
 			</md-input-container>
 			<div class="button-wrap">
 				<md-button type="submit" class="md-theme-default md-raised md-primary large text-center" ng-disabled="profileForm.$invalid">
