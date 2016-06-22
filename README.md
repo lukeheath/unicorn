@@ -14,3 +14,6 @@ Built for the new Node/Sails platform [Treeline](http://treeline.io). Check out 
 
 ###User Management
 User management via email or Facebook authorization. Includes signup, login, profile, forgot password and token authorization.
+
+###Yeoman Generator
+[Use the Yeoman generator ](https://www.npmjs.com/package/generator-unicorn) to customize your unicorn.
