@@ -17,3 +17,9 @@ User management via email or Facebook authorization. Includes signup, login, pro
 
 ###Yeoman Generator
 [Use the Yeoman generator ](https://www.npmjs.com/package/generator-unicorn) to customize your unicorn.
+
+Install the generator:
+`npm install -g generator-unicorn`
+
+Run the generator:
+`yo unicorn`
